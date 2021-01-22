@@ -6,6 +6,7 @@ export const Container = styled.div`
     margin: 0;
     background: #FFFFFF;
     border: 1px solid #D8E3FE;
+    box-shadow: 0 2px 6px rgba(216, 227, 254, 0.6);
 `;
 
 export const Content = styled.div`
@@ -30,17 +31,19 @@ export const MainContent = styled.div`
     @media screen and ( min-width: 991px ) {
         padding: 0;
         flex: 0 0 ${props => props.fullCard ? '60%' : '100%'};
-        position: relative;
     }
 `;
 
 export const Image = styled.div`
-    border-radius: 5px;
-    
     @media screen and ( min-width: 991px ) {
-        max-height: 320px;
-        overflow: hidden;
         flex: 0 0 35%;
+    }
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
     }
 `;
 
@@ -86,16 +89,26 @@ export const Title = styled.h3`
     }
 `;
 
-export const Text = styled.p``;
+export const Text = styled.div``;
 
 export const Cta = styled.div`
+    margin-top: 2rem;
+
     ${TertiaryButton} {
         margin-left: .125rem;
     }
+`;
 
-    @media screen and ( min-width: 991px ) {
-        position: ${props => props.fullCard ? 'absolute' : 'static'};
-        bottom: 0;
+export const Info = styled.div`
+    padding: 0 1rem;
+    border-top: 1px solid rgba(216, 227, 254, 0.5);
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.75em;
+    text-align: center;
+    color: ${defaultTheme.helperTextColor};
+
+    @media screen and ( min-width: 1200px ) {
+        padding: 0 2rem;
     }
 `;
 

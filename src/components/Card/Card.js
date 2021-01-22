@@ -7,7 +7,8 @@ import {
     PreTitle,
     Title,
     Text,
-    Cta
+    Cta,
+    Info
 } from "./Card.elements";
 
 function Card ({ children, ...restProps }) {
@@ -71,6 +72,14 @@ Card.Cta = function CardCta({ children, ...restProps }) {
         <Cta {...restProps}>
             { children }
         </Cta>
+    )
+}
+
+Card.Info = function CardInfo({ children, ...restProps }) {
+    return (
+        <Info {...restProps}>
+            { children }
+        </Info>
     )
 }
 

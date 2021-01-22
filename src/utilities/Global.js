@@ -44,6 +44,11 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
 
+    ul li,
+    ol li {
+        list-style-position: inside;
+    }
+
     dl {
         margin: 0;
         padding: 0;

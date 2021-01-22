@@ -41,13 +41,14 @@ function DeckOfCards () {
                             <Card.MainContent  fullCard={true}>
                                 { cardContents[0].preTitle && <Card.PreTitle>{cardContents[0].preTitle}</Card.PreTitle> }
                                 <Card.Title fullCard={true}>{cardContents[0].title}</Card.Title>
-                                <Card.Text>{cardContents[0].text}</Card.Text>
+                                <Card.Text><p>{cardContents[0].text}</p></Card.Text>
                                 <Card.Cta fullCard={true}>
                                     <PrimaryButton>Read Now</PrimaryButton>
                                     <TertiaryButton>Message Us For Details</TertiaryButton>
                                 </Card.Cta>
                             </Card.MainContent>
                         </Card.Content>
+                        { cardContents[0].info && <Card.Info>{cardContents[0].info}</Card.Info> }
                     </Card>
                 </Row>
 
@@ -62,12 +63,13 @@ function DeckOfCards () {
                             <Card.MainContent fullCard={false}>
                                 { cardContents[1].preTitle && <Card.PreTitle>{cardContents[1].preTitle}</Card.PreTitle> }
                                 <Card.Title fullCard={false}>{cardContents[1].title}</Card.Title>
-                                <Card.Text>{cardContents[1].text}</Card.Text>
+                                <Card.Text><p>{cardContents[1].text}</p></Card.Text>
                                 <Card.Cta fullCard={false}>
                                     <LinkButton>Subscribe to Newsletter</LinkButton>
                                 </Card.Cta>
                             </Card.MainContent>
                         </Card.Content>
+                        { cardContents[1].info && <Card.Info>{cardContents[1].info}</Card.Info> }
                     </Card>
                 </Row>
 
@@ -82,12 +84,13 @@ function DeckOfCards () {
                             <Card.MainContent fullCard={false}>
                                 { cardContents[2].preTitle && <Card.PreTitle><span>{cardContents[2].preTitle}</span></Card.PreTitle> }
                                 <Card.Title fullCard={false}>{cardContents[2].title}</Card.Title>
-                                <Card.Text>{cardContents[2].text}</Card.Text>
+                                <Card.Text><p>{cardContents[2].text}</p></Card.Text>
                                 <Card.Cta fullCard={false}>
                                     <LinkButton>Subscribe to Newsletter</LinkButton>
                                 </Card.Cta>
                             </Card.MainContent>
                         </Card.Content>
+                        { cardContents[2].info && <Card.Info>{cardContents[2].info}</Card.Info> }
                     </Card>
                 </Row>
             </FullWidthSection>

@@ -10,7 +10,6 @@ export const Section = styled(FullWidthSection)`
     position: relative;
     overflow: hidden;
     height: 60vh;
-    border-bottom: 1px solid rgba(216, 227, 254, 1);
 
     @media screen and (min-width: 75rem) {
         height: 80vh;
