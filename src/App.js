@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ScrollToTop, Topbar, Navbar, Footer } from "./components";
+import Home from "./pages/HomePage/Home";
+import About from "./pages/AboutPage/About";
+import Applicant from "./pages/ApplicantPage/Applicant";
+import Company from "./pages/CompanyPage/Company";
+import Partners from "./pages/PartnersPage/Partners";
+import Jobs from "./pages/JobsPage/Jobs";
+import News from "./pages/NewsPage/News";
+import Contact from "./pages/ContactPage/Contact";
+import Policy from "./pages/PolicyPage/Policy";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	return (
+		<Router>
+			<ScrollToTop />
+			<Topbar />
+			<Navbar />
+			<Switch>
+				<Route path='/' exact component={ Home } />
+				<Route path='/about' component={ About } />
+				<Route path='/applicant' component={ Applicant } />
+				<Route path='/company' component={ Company } />
+				<Route path='/partners' component={ Partners } />
+				<Route path='/jobs' component={ Jobs } />
+				<Route path='/news' component={ News } />
+				<Route path='/contact' component={ Contact } />
+				<Route path='/policy' component={ Policy } />
+			</Switch>
+			<Footer />
+		</Router>
+	);
 }
 
 export default App;
