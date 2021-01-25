@@ -80,11 +80,11 @@ function ApplicantForm () {
 
     const trainingLocationOptions = [
         { key: 'Select an option', value: '' },
-        { key: 'Baguio City', value: 'baguio' },
-        { key: 'Cebu City', value: 'cebu' },
-        { key: 'Iloilo City', value: 'iloilo' },
+        { key: 'Baguio City', value: 'Baguio City' },
+        { key: 'Cebu City', value: 'Cebu City' },
+        { key: 'Iloilo City', value: 'Iloilo City' },
         { key: 'Ortigas', value: 'Ortigas' },
-        { key: 'Quezon City', value: 'quezon' }
+        { key: 'Quezon City', value: 'Quezon City' }
     ];
 
     const workingAbroadOptions = [
@@ -126,7 +126,7 @@ function ApplicantForm () {
         licenseNumber: Yup.string().required('Required'),
     });
 
-    const onSubmit = function (values) {
+    const onSubmit = function (values, actions) {
         // console.log('Form data', JSON.stringify(values, null, 2));
 
         const requestOptions = {
@@ -160,6 +160,10 @@ function ApplicantForm () {
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
+            })
+            .then(() => { 
+                alert("Form has been successfully submitted! Thank you  very much!");
+                actions.resetForm(); 
             })
             .catch(error => {
                 alert('There was an error. Please try again later');

@@ -311,7 +311,7 @@ function CompanyForm () {
         inquiry: Yup.string().required('Required'),
     });
 
-    const onSubmit = function (values) {
+    const onSubmit = function (values, actions) {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -339,6 +339,10 @@ function CompanyForm () {
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
+            })
+            .then(() => {
+                alert("Form has been successfully submitted. Thank you very much!");
+                actions.resetForm();
             })
             .catch(error => {
                 alert('There was an error. Please try again later');
