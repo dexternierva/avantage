@@ -23,6 +23,10 @@ export const defaultTheme = {
     textColor: neutral[200],
     textColorInverted: neutral[500],
 
+    disabledBorder: neutral[300],
+    disabledButton: neutral[400],
+    disabledColor: neutral[300],
+
     primaryFont: primaryFont
 }
 

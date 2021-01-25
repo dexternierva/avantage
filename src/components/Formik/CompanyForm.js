@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, yupToFormErrors } from "formik";
 import * as Yup from "yup";
 import FormikControl from './FormikControl';
@@ -27,6 +27,11 @@ const Fieldset = styled.div`
 
 function CompanyForm () {
     const digitsOnly = (value) => /^\d+$/.test(value);
+
+    const [ agree, setAgree ] = useState(false);
+    const checkboxHandler = function () {
+        setAgree(!agree);
+    }
 
     const titleOptions = [
         { key: 'Mr.', value: 'mr' },
@@ -280,11 +285,6 @@ function CompanyForm () {
         {key: "Zimbabwe", value: "ZW"}
     ];
 
-    const agreementOptions = [
-        { key: "I have read and accepted the Terms of Use and Privacy Policy", value: "agree" },
-        { key: "Subscribe to newsletter", value: "subscribe" }
-    ];
-
     const initialValues = {
         title: '',
         completeName: '',
@@ -296,7 +296,6 @@ function CompanyForm () {
         numberOfNeededWorkers: '',
         country: '',
         inquiry: '',
-        agreementOption: [],
     };
 
     const validationSchema = Yup.object({
@@ -310,10 +309,42 @@ function CompanyForm () {
         numberOfNeededWorkers: Yup.string().required('Required').test('Digits only', 'The field should have digits only', digitsOnly),
         country: Yup.string().required('Required'),
         inquiry: Yup.string().required('Required'),
-        agreementOption: Yup.array().required('Required'),
     });
 
-    const onSubmit = values => console.log('Form data', values);
+    const onSubmit = function (values) {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title: values.title,
+                completeName: values.completeName,
+                email: values.email,
+                companyName: values.companyName,
+                contactNumber: values.contactNumber,
+                companyAddress: values.companyAddress,
+                categories: values.categories,
+                numberOfNeededWorkers: values.numberOfNeededWorkers,
+                country: values.country,
+                inquiry: values.inquiry
+            })
+        };
+
+        fetch('http://139.59.126.209/employers', requestOptions)
+            .then(async response => {
+                const data = await response.json();
+
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+            })
+            .catch(error => {
+                alert('There was an error. Please try again later');
+                console.error('There was an error!', error);
+            });
+    }
 
     return (
         <Container>
@@ -397,16 +428,17 @@ function CompanyForm () {
                                         name="inquiry"
                                         placeholder="Please enter you inquiry here."
                                     />
-                                    <FormikControl 
-                                        control="checkbox"
-                                        label=""
-                                        name="agreementOption"
-                                        options={agreementOptions}
-                                    />
+
+                                    <Fieldset>
+                                        <label htmlFor="agree"> 
+                                            <input type="checkbox" id="agree" onChange={checkboxHandler} />
+                                            I agree to the <b>terms and conditions</b> and the <b>privacy policy.</b>
+                                        </label>
+                                    </Fieldset>
 
                                     <br />
 
-                                    <PrimaryButton type='submit'>Submit Inquiry</PrimaryButton>
+                                    <PrimaryButton type="submit" disabled={!agree}>Submit Inquiry</PrimaryButton>
                                 </Form>
                         }
                     </Formik>

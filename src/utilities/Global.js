@@ -175,7 +175,18 @@ export const GlobalStyle = createGlobalStyle`
 
     input[type=radio],
     input[type=checkbox] {
+        -ms-transform: scale(1.5); /* IE */
+        -moz-transform: scale(1.5); /* FF */
+        -webkit-transform: scale(1.5); /* Safari and Chrome */
+        -o-transform: scale(1.5); /* Opera */
+        transform: scale(1.5);
+        padding: 10px;
         display: inline-block
+    }
+
+    input[type=checkbox] {
+        margin-right: 1rem;
+        margin-left: .25rem;
     }
 
     ::-webkit-input-placeholder { /* Edge */

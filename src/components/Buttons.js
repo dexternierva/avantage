@@ -64,6 +64,14 @@ const PrimaryButton = styled(Button)`
         background-color: ${defaultTheme.primaryActiveColor};
     }
 
+    &:disabled {
+        background-color: ${defaultTheme.disabledButton};
+        border: 1px solid ${defaultTheme.disabledBorder};
+        color: ${defaultTheme.disabledColor};
+        box-shadow: none;
+        cursor: not-allowed;
+    }
+
     ${applyStyleModifiers(BUTTON_MODIFIERS)}
 `;
 

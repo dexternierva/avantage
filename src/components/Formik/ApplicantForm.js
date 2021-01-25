@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import { Formik, Form, yupToFormErrors } from "formik";
 import * as Yup from "yup";
 import FormikControl from './FormikControl';
@@ -46,6 +46,12 @@ const CustomUploadButton = asUploadButton(forwardRef(
 ));
 
 function ApplicantForm () {
+    const [ agree, setAgree ] = useState(false);
+
+    const checkboxHandler = function () {
+        setAgree(!agree);
+    }
+
     const surveyOptions = [
         { key: 'Select an option', value: '' },
         { key: 'Facebook', value: 'facebook' },
@@ -60,16 +66,16 @@ function ApplicantForm () {
 
     const jobApplyingOptions = [
         { key: 'Select an option', value: '' },
-        { key: 'Nurse For Germany', value: 'nurseforgermany' },
-        { key: 'Caregiver For Canada', value: 'caregiverforcanada' },
-        { key: 'Other Professions', value: 'others' }
+        { key: 'Nurse For Germany', value: 'Nurse For Germany' },
+        { key: 'Caregiver For Canada', value: 'Caregiver For Canada' },
+        { key: 'Other Professions', value: 'Other Professions' }
     ];
 
     const registrationPurposeOptions = [
         { key: 'Select an option', value: '' },
-        { key: 'German Language Scholarship A1 to B2 and German Nursing Licensure Preparatory Course', value: 'languagescholarship' },
-        { key: 'German Nursing Licensure Preparatory Course for B1 and B2 passers', value: 'nursinglicensure' },
-        { key: 'Scholarship for B2 Refresher Course', value: 'refreshercourse' }
+        { key: 'German Language Scholarship A1 to B2 and German Nursing Licensure Preparatory Course', value: 'German Language Scholarship A1 to B2 and German Nursing Licensure Preparatory Course' },
+        { key: 'German Nursing Licensure Preparatory Course for B1 and B2 passers', value: 'German Nursing Licensure Preparatory Course for B1 and B2 passers' },
+        { key: 'Scholarship for B2 Refresher Course', value: 'Scholarship for B2 Refresher Course' }
     ];
 
     const trainingLocationOptions = [
@@ -84,11 +90,6 @@ function ApplicantForm () {
     const workingAbroadOptions = [
         { key: 'Yes', value: 'yes' },
         { key: 'No', value: 'no' }
-    ];
-
-    const agreementOptions = [
-        { key: "I have read and accepted the Terms of Use and Privacy Policy", value: "agree" },
-        { key: "Subscribe to newsletter", value: "subscribe" }
     ];
 
     const initialValues = {
@@ -106,7 +107,6 @@ function ApplicantForm () {
         address: '',
         trainingLocation: '',
         licenseNumber: '',
-        agreementOption: [],
     };
 
     const validationSchema = Yup.object({
@@ -116,7 +116,7 @@ function ApplicantForm () {
         middleName: Yup.string(),
         birthDate: Yup.date().required('Required').nullable(),
         messenger: Yup.string().required('Required'),
-        phoneNumber: Yup.string().required('Required').matches(/(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})/, "Must only be digits"),
+        phoneNumber: Yup.string().required('Required'),
         email: Yup.string().email().required('Required'),
         workingAbroad: Yup.string().required('Required'),
         jobApplyingFor: Yup.string().required('Required'),
@@ -124,10 +124,49 @@ function ApplicantForm () {
         address: Yup.string().required('Required'),
         trainingLocation: Yup.string().required('Required'),
         licenseNumber: Yup.string().required('Required'),
-        agreementOption: Yup.array().required('Required')
     });
 
-    const onSubmit = values => console.log('Form data', values);
+    const onSubmit = function (values) {
+        // console.log('Form data', JSON.stringify(values, null, 2));
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                survey: values.survey,
+                lastName: values.lastName,
+                firstName: values.firstName,
+                middleName: values.middleName,
+                birthDate: values.birthDate,
+                messenger: values.messenger,
+                phoneNumber: values.phoneNumber,
+                email: values.email,
+                workingAbroad: values.workingAbroad,
+                jobApplyingFor: values.jobApplyingFor,
+                registrationPurpose: values.registrationPurpose,
+                address: values.address,
+                trainingLocation: values.trainingLocation,
+                licenseNumber: values.licenseNumber
+            })
+        };
+
+        fetch('http://139.59.126.209/applicants', requestOptions)
+            .then(async response => {
+                const data = await response.json();
+
+                // Check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+            })
+            .catch(error => {
+                alert('There was an error. Please try again later');
+                console.error('There was an error!', error);
+            })
+    }
+
     return (
         <Container>
             <FullWidthSection>
@@ -192,7 +231,7 @@ function ApplicantForm () {
                                             pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" 
                                             label="Phone Number" 
                                             name="phoneNumber"
-                                            placeholder="09661234567"
+                                            placeholder="0966-123-4567"
                                         />
                                         <FormikControl 
                                             control="input" 
@@ -245,16 +284,16 @@ function ApplicantForm () {
                                         <CustomUploadButton />
                                     </Uploady>
 
-                                    <FormikControl 
-                                        control="checkbox"
-                                        label=""
-                                        name="agreementOption"
-                                        options={agreementOptions}
-                                    />
+                                    <Fieldset>
+                                        <label htmlFor="agree"> 
+                                            <input type="checkbox" id="agree" onChange={checkboxHandler} />
+                                            I agree to the <b>terms and conditions</b> and the <b>privacy policy.</b>
+                                        </label>
+                                    </Fieldset>
 
                                     <p>The company will collect personal information from you whenever you contact us for inquiries or requests through our website. Personal information, which will be collected includes Full name, email address, contact number, date of birth, address, CV, certificates etc. For employer inquiries, personal information, which will be collected additionally includes: company name, company address etc.</p>
 
-                                    <PrimaryButton type="submit">Submit Application</PrimaryButton>
+                                    <PrimaryButton type="submit" disabled={!agree}>Submit Application</PrimaryButton>
                                 </Form>
                         }
                     </Formik>
