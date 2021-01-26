@@ -48,7 +48,7 @@ function ContactForm () {
             })
         };
 
-        fetch('http://139.59.126.209/messages', requestOptions)
+        fetch('http://139.59.119.121/messages', requestOptions)
             .then(async response => {
                 const data = await response.json();
 

@@ -88,8 +88,8 @@ function ApplicantForm () {
     ];
 
     const workingAbroadOptions = [
-        { key: 'Yes', value: 'yes' },
-        { key: 'No', value: 'no' }
+        { key: 'Yes', value: 'Yes' },
+        { key: 'No', value: 'No' }
     ];
 
     const initialValues = {
@@ -150,7 +150,7 @@ function ApplicantForm () {
             })
         };
 
-        fetch('http://139.59.126.209/applicants', requestOptions)
+        fetch('http://139.59.119.121/applicants', requestOptions)
             .then(async response => {
                 const data = await response.json();
 
