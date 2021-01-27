@@ -6,6 +6,7 @@ import About from "./pages/AboutPage/About";
 import Applicant from "./pages/ApplicantPage/Applicant";
 import Company from "./pages/CompanyPage/Company";
 import Partners from "./pages/PartnersPage/Partners";
+import BusinessSolutions from "./pages/BusinessSolutionsPage/BusinessSolutions";
 import Jobs from "./pages/JobsPage/Jobs";
 import News from "./pages/NewsPage/News";
 import Contact from "./pages/ContactPage/Contact";
@@ -25,6 +26,7 @@ function App() {
 				<Route path='/applicant' component={ Applicant } />
 				<Route path='/company' component={ Company } />
 				<Route path='/partners' component={ Partners } />
+				<Route path='/businesssolutions' component={ BusinessSolutions } />
 				<Route path='/jobs' component={ Jobs } />
 				<Route path='/news' component={ News } />
 				<Route path='/contact' component={ Contact } />

@@ -34,6 +34,7 @@ function Navbar () {
                 <NavMenu onClick={handleClick} click={click} sd={8} ed={6}>
                     <NavLink to="/about">About</NavLink>
                     <NavLink to="/partners">Partners</NavLink>
+                    <NavLink to="/businesssolutions">Solutions</NavLink>
                     <NavLink to="/jobs">Jobs</NavLink>
                     <NavLink to="/news">News</NavLink>
                     <NavLink to="/contact">Contact</NavLink>
