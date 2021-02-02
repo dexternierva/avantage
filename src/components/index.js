@@ -11,7 +11,7 @@ export { default as Bleeding } from "./Bleeding/Bleeding";
 export { default as DeckOfCards } from "./DeckOfCards/DeckOfCards";
 export { default as BusinessSolutions } from "./BusinessSolutions/BusinessSolutions";
 export { default as Testimonials } from "./Testimonials/Testimonials";
-export { default as Affiliations } from "./Affiliations/Affiliations";
+export { default as MoveStuffAround } from "./MoveStuffAround/MoveStuffAround";
 export { default as Newsletter } from "./Newsletter/Newsletter";
 export { default as Inquiry } from "./Inquiry/Inquiry";
 export { default as Accordion } from "./Accordion/Accordion";

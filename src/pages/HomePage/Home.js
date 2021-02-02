@@ -1,15 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 import styled from "styled-components";
 import {
-    Hero, 
-    Affiliations,
+    Hero,
     SectionHeader, 
     Stepper, 
     Bleeding,
     DeckOfCards,
     BusinessSolutions,
     Testimonials,
-    Inquiry
+    Inquiry,
+    MoveStuffAround
 } from "../../components";
 import { useHistory } from "react-router-dom";
 import { FaUserNurse, FaUserTie } from "react-icons/fa";
@@ -96,7 +96,7 @@ function Home () {
     return (
         <Fragment>
             <Hero />
-            <Affiliations />
+            <MoveStuffAround />
             
             { /**  HOW WE WORK SECTION */ }
             <ServicesSection>
@@ -131,7 +131,7 @@ function Home () {
             { /**  WHAT WE OFFER SECTION */ }
             <OpportunitiesSection>
                 <SectionHeader>
-                    <SectionHeader.PreTitle>What We Offer <b>For Clients</b></SectionHeader.PreTitle>
+                    <SectionHeader.PreTitle>What We Offer <b>For Applicants</b></SectionHeader.PreTitle>
                     <SectionHeader.Title>Our Career <b>Opportunities</b></SectionHeader.Title>
                 </SectionHeader>
 
@@ -139,6 +139,10 @@ function Home () {
             </OpportunitiesSection>
 
             { /**  BUSINESS SOLUTIONS */ }
+            <SectionHeader>
+                <SectionHeader.PreTitle>What We Offer <b>For Business Clients</b></SectionHeader.PreTitle>
+                <SectionHeader.Title>Our Business <b>Solutions</b></SectionHeader.Title>
+            </SectionHeader>
             <BusinessSolutions />
             
             <Inquiry />

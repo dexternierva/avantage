@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../Card/Card";
+import { useHistory } from "react-router-dom";
 import PrimaryButton, { TertiaryButton, LinkButton } from "../Buttons";
 import Grid from "../Layout/Grid";
 import FullWidthSection from "../Layout/FullWidthSection";
@@ -12,18 +13,22 @@ const cardContents = [
         text: 'First come, first served! Our Job Opening for Nurses for Germany comes with 3 different Career Programs dependent on the individual qualification of the nurse. Admission is subject to availability and qualification requirements of our employer.'
     },
     {
-        preTitle: 'Upcoming',
-        title: 'Caregivers for Canada',
+        preTitle: 'For Manpower Pooling',
+        title: 'Caregivers for Canada & Taiwan',
         text: 'Cupcake ipsum dolor sit. Amet pie pudding marshmallow apple pie pastry. Sesame snaps I love wafer sweet gummi bears lollipop jujubes.'
     },
     {
-        preTitle: 'Upcoming',
-        title: 'Opportunities for Skilled Workers in Australia and Japan',
-        text: 'Cupcake ipsum dolor sit. Amet pie pudding marshmallow apple pie pastry.'
+        preTitle: 'For Manpower Pooling',
+        title: 'Factory Workers for Taiwan',
+        text: 'Cupcake ipsum dolor sit. Amet pie pudding marshmallow apple pie pastry. Sesame snaps I love wafer sweet gummi bears lollipop jujubes.'
     },
 ]
 
 function DeckOfCards () {
+    const history = useHistory();
+    const applicantClick = () => history.push('/applicant');
+    const contactClick = () => history.push('/company');
+
     return (
         <Grid>
             <FullWidthSection>
@@ -40,8 +45,8 @@ function DeckOfCards () {
                                 <Card.Title fullCard={true}>{cardContents[0].title}</Card.Title>
                                 <Card.Text><p>{cardContents[0].text}</p></Card.Text>
                                 <Card.Cta fullCard={true}>
-                                    <PrimaryButton>Read Now</PrimaryButton>
-                                    <TertiaryButton>Message Us For Details</TertiaryButton>
+                                    <PrimaryButton onClick={ applicantClick }>Learn More</PrimaryButton>
+                                    <TertiaryButton onClick={ contactClick }>Message Us For Details</TertiaryButton>
                                 </Card.Cta>
                             </Card.MainContent>
                         </Card.Content>
@@ -62,7 +67,7 @@ function DeckOfCards () {
                                 <Card.Title fullCard={false}>{cardContents[1].title}</Card.Title>
                                 <Card.Text><p>{cardContents[1].text}</p></Card.Text>
                                 <Card.Cta fullCard={false}>
-                                    <LinkButton>Subscribe to Newsletter</LinkButton>
+                                    <TertiaryButton onClick={ applicantClick }>Learn More</TertiaryButton>
                                 </Card.Cta>
                             </Card.MainContent>
                         </Card.Content>
@@ -83,7 +88,7 @@ function DeckOfCards () {
                                 <Card.Title fullCard={false}>{cardContents[2].title}</Card.Title>
                                 <Card.Text><p>{cardContents[2].text}</p></Card.Text>
                                 <Card.Cta fullCard={false}>
-                                    <LinkButton>Subscribe to Newsletter</LinkButton>
+                                    <TertiaryButton onClick={ applicantClick }>Learn More</TertiaryButton>
                                 </Card.Cta>
                             </Card.MainContent>
                         </Card.Content>
