@@ -1,12 +1,12 @@
-import React, { forwardRef, useState } from "react";
-import { Formik, Form, yupToFormErrors } from "formik";
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FormikControl from './FormikControl';
-import Uploady from "@rpldy/uploady";
-import UploadButton, { asUploadButton } from "@rpldy/upload-button";
 import PrimaryButton from "../Buttons";
 import { Grid, FullWidthSection, Row } from "../Layout";
 import styled from "styled-components";
+import TextError from "./TextError";
+import axios from "axios";
 
 const Container = styled(Grid)`
     padding: 1.5rem 0 3rem 0;
@@ -27,30 +27,9 @@ const Fieldset = styled.div`
     }
 `;
 
-const CustomUploadButton = asUploadButton(forwardRef(
-    (props, ref) =>
-        <button {...props} 
-            style={{ 
-                cursor: "pointer",
-                padding: "16px 24px",
-                fontSize: "1em",
-                borderRadius: "2px",
-                marginTop: "1.5rem",
-                backgroundColor: "#FFFFFF",
-                border: "1px solid #41B332",
-                color: "#41B332"
-            }}
-        >
-            Upload Your CV
-        </button>
-));
-
 function ApplicantForm () {
-    const [ agree, setAgree ] = useState(false);
-
-    const checkboxHandler = function () {
-        setAgree(!agree);
-    }
+    const [cv, setCv] = useState(null);
+    const handleChange = (event) => { setCv(event.target.files[0]); }
 
     const surveyOptions = [
         { key: 'Select an option', value: '' },
@@ -107,6 +86,8 @@ function ApplicantForm () {
         address: '',
         trainingLocation: '',
         licenseNumber: '',
+        inquiryPurpose: '',
+        acceptTerms: false
     };
 
     const validationSchema = Yup.object({
@@ -120,55 +101,61 @@ function ApplicantForm () {
         email: Yup.string().email().required('Required'),
         workingAbroad: Yup.string().required('Required'),
         jobApplyingFor: Yup.string().required('Required'),
-        registrationPurpose: Yup.string().required('Required'),
         address: Yup.string().required('Required'),
-        trainingLocation: Yup.string().required('Required'),
-        licenseNumber: Yup.string().required('Required'),
+        registrationPurpose: Yup.string().when('jobApplyingFor', {
+            is: (jobApplyingFor) => 'Nurse For Germany',
+            then: Yup.string().required('Required'),
+            otherwise: Yup.string()
+        }),
+        trainingLocation: Yup.string().when('jobApplyingFor', {
+            is: (jobApplyingFor) => 'Nurse For Germany' || 'Caregiver For Canada',
+            then: Yup.string().required('Required'),
+            otherwise: Yup.string()
+        }),
+        licenseNumber: Yup.string().when('jobApplyingFor', {
+            is: (jobApplyingFor) => 'Nurse For Germany',
+            then: Yup.string().required('Required'),
+            otherwise: Yup.string()
+        }),
+        inquiryPurpose: Yup.string().when('jobApplyingFor', {
+            is: (jobApplyingFor) => 'Other Professions',
+            then: Yup.string(),
+            otherwise: Yup.string()
+        }),
+        acceptTerms: Yup.bool().oneOf([true], ' You must accept terms and conditions!')
     });
+    
+    const onSubmit = async function (values, actions) {
+        const data = new FormData();
+        data.append('files.cv', cv);
+        
+        const info = {
+            'survey': values.survey,
+            'lastName': values.lastName,
+            'firstName': values.firstName,
+            'middleName': values.middleName,
+            'birthDate': values.birthDate,
+            'messenger': values.messenger,
+            'phoneNumber': values.phoneNumber,
+            'email': values.email,
+            'workingAbroad': values.workingAbroad,
+            'jobApplyingFor': values.jobApplyingFor,
+            'registrationPurpose': values.registrationPurpose,
+            'address': values.address,
+            'trainingLocation': values.trainingLocation,
+            'licenseNumber': values.licenseNumber,
+            'inquiryPurpose': values.inquiryPurpose,
+            'acceptTerms': values.acceptTerms
+        }
+        data.append('data', JSON.stringify(info));
 
-    const onSubmit = function (values, actions) {
-        // console.log('Form data', JSON.stringify(values, null, 2));
-
-        const requestOptions = {
+        const upload_res = await axios({
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                survey: values.survey,
-                lastName: values.lastName,
-                firstName: values.firstName,
-                middleName: values.middleName,
-                birthDate: values.birthDate,
-                messenger: values.messenger,
-                phoneNumber: values.phoneNumber,
-                email: values.email,
-                workingAbroad: values.workingAbroad,
-                jobApplyingFor: values.jobApplyingFor,
-                registrationPurpose: values.registrationPurpose,
-                address: values.address,
-                trainingLocation: values.trainingLocation,
-                licenseNumber: values.licenseNumber
-            })
-        };
+            url: 'http://localhost:1337/applicants',
+            data
+        });
 
-        fetch('http://139.59.119.121/applicants', requestOptions)
-            .then(async response => {
-                const data = await response.json();
-
-                // Check for error response
-                if (!response.ok) {
-                    // get error message from body or default to response status
-                    const error = (data && data.message) || response.status;
-                    return Promise.reject(error);
-                }
-            })
-            .then(() => { 
-                alert("Form has been successfully submitted! Thank you  very much!");
-                actions.resetForm(); 
-            })
-            .catch(error => {
-                alert('There was an error. Please try again later');
-                console.error('There was an error!', error);
-            })
+        console.log("FileUpload.handleSubmit upload_res", upload_res);
     }
 
     return (
@@ -257,47 +244,74 @@ function ApplicantForm () {
                                         name="jobApplyingFor"
                                         options={jobApplyingOptions}
                                     />
-                                    <FormikControl 
-                                        control="select"
-                                        label="Purpose of Registration"
-                                        name="registrationPurpose"
-                                        options={registrationPurposeOptions}
-                                    />
+
+                                    {(() => {
+                                        switch (formik.values.jobApplyingFor) {
+                                            case "Nurse For Germany": return (
+                                                <>
+                                                <FormikControl 
+                                                    control="select"
+                                                    label="Purpose of Registration"
+                                                    name="registrationPurpose"
+                                                    options={registrationPurposeOptions}
+                                                />
+                                                <Fieldset>
+                                                    <FormikControl 
+                                                        control="select"
+                                                        label="Preferred Training Location"
+                                                        name="trainingLocation"
+                                                        options={trainingLocationOptions}
+                                                    />
+                                                    <FormikControl 
+                                                        control="input" 
+                                                        type="text" 
+                                                        label="Philippine PRC License Number"
+                                                        name="licenseNumber" 
+                                                        placeholder="only Filipino applicants are eligible"
+                                                    />
+                                                </Fieldset>
+                                                </>
+                                            );
+                                            case "Caregiver For Canada": return (
+                                                <FormikControl 
+                                                    control="select"
+                                                    label="Preferred Training Location"
+                                                    name="trainingLocation"
+                                                    options={trainingLocationOptions}
+                                                />
+                                            );
+                                            case "Other Professions" : return (
+                                                <FormikControl 
+                                                    control="textarea"
+                                                    label="Please Enter Purpose Of Inquiry"
+                                                    name="inquiryPurpose"
+                                                />
+                                            );
+                                            default: return null;
+                                        }
+                                    })()}
+
                                     <FormikControl 
                                         control="textarea"
                                         label="Address"
                                         name="address"
                                     />
-                                    <Fieldset>
-                                        <FormikControl 
-                                            control="select"
-                                            label="Preferred Training Location"
-                                            name="trainingLocation"
-                                            options={trainingLocationOptions}
-                                        />
-                                        <FormikControl 
-                                            control="input" 
-                                            type="text" 
-                                            label="Philippine PRC License Number"
-                                            name="licenseNumber" 
-                                            placeholder="only Filipino applicants are eligible"
-                                        />
-                                    </Fieldset>
-
-                                    <Uploady destination={{ url: "https://my-server.com/upload" }}>
-                                        <CustomUploadButton />
-                                    </Uploady>
+                                    
+                                    <label>Upload CV
+                                        <input onChange={handleChange} type="file" name="cv" id="cv" />
+                                    </label>
 
                                     <Fieldset>
-                                        <label htmlFor="agree"> 
-                                            <input type="checkbox" id="agree" onChange={checkboxHandler} />
-                                            I agree to the <b>terms and conditions</b> and the <b>privacy policy.</b>
+                                        <label htmlFor="acceptTerms" className="form-check-label">
+                                            <Field type="checkbox" name="acceptTerms" className={'form-check-input ' + (formik.errors.acceptTerms && formik.touched.acceptTerms ? ' is-invalid' : '')} />
+                                            I agree to the terms and conditions and the privacy policy. 
+                                            <ErrorMessage name="acceptTerms" component={TextError} />
                                         </label>
                                     </Fieldset>
 
                                     <p>The company will collect personal information from you whenever you contact us for inquiries or requests through our website. Personal information, which will be collected includes Full name, email address, contact number, date of birth, address, CV, certificates etc. For employer inquiries, personal information, which will be collected additionally includes: company name, company address etc.</p>
 
-                                    <PrimaryButton type="submit" disabled={!agree}>Submit Application</PrimaryButton>
+                                    <PrimaryButton type="submit" disabled={!formik.values.acceptTerms}>Submit Application</PrimaryButton>
                                 </Form>
                         }
                     </Formik>

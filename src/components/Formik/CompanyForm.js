@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Formik, Form, yupToFormErrors } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from './FormikControl';
 import PrimaryButton from "../Buttons";
@@ -312,6 +312,8 @@ function CompanyForm () {
     });
 
     const onSubmit = function (values, actions) {
+        console.log('Form data', JSON.stringify(values, null, 2));
+
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

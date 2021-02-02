@@ -1,5 +1,5 @@
-import React, { useState, forwardRef } from "react";
-import { Formik, Form, yupToFormErrors } from "formik";
+import React, { useState } from "react";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from './FormikControl';
 import PrimaryButton from "../Buttons";
@@ -23,25 +23,26 @@ function ContactForm () {
     }
 
     const initialValues = {
-        name: '',
+        fullName: '',
         contact: '',
         email: '',
         message: ''
     };
 
     const validationSchema = Yup.object({
-        name: Yup.string().required('Required').min(2, 'Must be atleast 2 characters'),
+        fullName: Yup.string().required('Required').min(2, 'Must be atleast 2 characters'),
         contact: Yup.string().required('Required'),
         email: Yup.string().email().required('Required'),
         message: Yup.string().required('Required')
     });
 
     const onSubmit = function (values, actions) {
+        // console.log('Form data', JSON.stringify(values, null, 2));
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: values.name,
+                fullName: values.fullName,
                 contact: values.contact,
                 email: values.email,
                 message: values.message
@@ -83,7 +84,7 @@ function ContactForm () {
                                 control="input" 
                                 type="text" 
                                 label="Full Name" 
-                                name="name"
+                                name="fullName"
                                 placeholder="Full Name" 
                             />
                             <FormikControl 

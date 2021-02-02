@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { defaultTheme } from "../../utilities";
-import PrimaryButton, { TertiaryButton } from "../Buttons";
+import { TertiaryButton } from "../Buttons";
 
 export const Container = styled.div`
     margin: 0;

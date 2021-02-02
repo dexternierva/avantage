@@ -7,8 +7,7 @@ import {
     Container,
     Wrap,
     Dropdown
-} from "./Accordion.elements.js"
-import { CSSTransition } from "react-transition-group";
+} from "./Accordion.elements.js";
 
 const Accordion = () => {
 
@@ -51,7 +50,7 @@ const Accordion = () => {
     };
 
     return (
-        <IconContext.Provider value={{ color: '#047CC7', size: '25px' }}>
+        <IconContext.Provider value={{ color: '#047CC7', size: '24px' }}>
             <Grid>
                 <FullWidthSection>
                     <AccordionSection ss={2} es={6} sm={2} em={6} sd={6} ed={8}>
@@ -60,24 +59,14 @@ const Accordion = () => {
                             return (
                             <>
                                 <Wrap onClick={() => toggle(index)} key={index}>
-                                    <h3><span>Step {index + 1}:</span>{item.question}</h3>
+                                    <h4><span>Step {index + 1}:</span>{item.question}</h4>
                                     <span>{clicked === index ? <FiMinus /> : <FiPlus />}</span>
                                 </Wrap>
-                                {/* {clicked === index ? (
+                                {clicked === index ? (
                                     <Dropdown>
                                         <h4>{item.answer}</h4>
                                     </Dropdown>
-                                ) : null} */}
-                                {/* <Dropdown className={clicked === index ? "dropdown active" : "dropdown inactive"}>
-                                    <h4>{item.answer}</h4>
-                                </Dropdown> */}
-                                
-                                <CSSTransition in={clicked} timeout={300} classNames="my-node">
-                                    <Dropdown className={clicked === index ? "active" : "inactive"}>
-                                        <h4>{item.answer}</h4>
-                                    </Dropdown>
-                                </CSSTransition>
-                                
+                                ) : null}
                             </>
                             );
                         })}

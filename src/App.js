@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ScrollToTop, Topbar, Navbar, Footer } from "./components";
 import Home from "./pages/HomePage/Home";
@@ -11,7 +11,6 @@ import Jobs from "./pages/JobsPage/Jobs";
 import News from "./pages/NewsPage/News";
 import Contact from "./pages/ContactPage/Contact";
 import Policy from "./pages/PolicyPage/Policy";
-
 
 function App() {
 

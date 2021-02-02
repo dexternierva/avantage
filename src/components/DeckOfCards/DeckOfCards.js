@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "../Card/Card";
 import PrimaryButton, { TertiaryButton, LinkButton } from "../Buttons";
 import Grid from "../Layout/Grid";
 import FullWidthSection from "../Layout/FullWidthSection";
 import Row from "../Layout/Row";
-import {
-
-} from "./DeckOfCards.elements.js";
 
 const cardContents = [
     {

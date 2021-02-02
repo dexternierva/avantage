@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Grid } from "../Layout";
 import Newsletter from "../Newsletter/Newsletter";
-import Inquiry from "../Inquiry/Inquiry";
 import { 
     Container,
     ContainerRow, 

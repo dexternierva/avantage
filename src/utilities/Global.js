@@ -189,6 +189,10 @@ export const GlobalStyle = createGlobalStyle`
         margin-left: .25rem;
     }
 
+    input[type=file] {
+        display: block;
+    }
+
     ::-webkit-input-placeholder { /* Edge */
         color: ${defaultTheme.fourthNeutral};
         font-family: 'Libre Baskerville', serif;

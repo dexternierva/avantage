@@ -156,7 +156,7 @@ function Stepper ({ stepsArr, currentStep }) {
                         {   
                             steps.map(function (step, index) { 
                                 return (
-                                    <StepProgress steps={stepsArr} step={step} index={index} />
+                                    <StepProgress steps={stepsArr} step={step} index={index} key={index} />
                                 )
                             })
                         }
