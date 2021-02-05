@@ -21,7 +21,6 @@ import { FaFacebookF, FaSkype, FaLinkedinIn } from "react-icons/fa";
 function Navbar () {
     const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click);
-
     return (
         <Grid>
             <Nav>

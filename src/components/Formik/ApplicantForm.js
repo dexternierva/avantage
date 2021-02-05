@@ -151,9 +151,17 @@ function ApplicantForm () {
 
         const upload_res = await axios({
             method: 'POST',
-            url: 'http://localhost:1337/applicants',
+            url: 'http://68.183.226.128/applicants',
             data
-        });
+        })
+            .then(() => {
+                alert("Form has been successfully submitted. Thank you very much!");
+                actions.resetForm();
+            })
+            .catch(error => {
+                alert('There was an error. Please try again later');
+                console.error('There was an error!', error);
+            });
 
         console.log("FileUpload.handleSubmit upload_res", upload_res);
     }

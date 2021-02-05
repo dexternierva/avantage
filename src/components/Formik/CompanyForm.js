@@ -331,7 +331,7 @@ function CompanyForm () {
             })
         };
 
-        fetch('http://139.59.119.121/employers', requestOptions)
+        fetch('http://68.183.226.128/employers', requestOptions)
             .then(async response => {
                 const data = await response.json();
 

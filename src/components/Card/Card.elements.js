@@ -32,6 +32,10 @@ export const MainContent = styled.div`
         padding: 0;
         flex: 0 0 ${props => props.fullCard ? '60%' : '100%'};
     }
+
+    img {
+        max-height: 220px;
+    }
 `;
 
 export const Image = styled.div`
@@ -83,6 +87,7 @@ export const PreTitle = styled.p`
 export const Title = styled.h3`
     font-size: ${ props => props.fullCard ? '1.375em' : '1.125em' };
     line-height: ${ props => props.fullCard ? '1.13636364' : '1.11111111' };
+    margin-top: ${props => props.fullCard ? '0em' : '2em' }
 
     @media screen and ( min-width: 991px) {
         margin-top: 0;

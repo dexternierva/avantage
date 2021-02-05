@@ -12,6 +12,7 @@ import {
     MoveStuffAround
 } from "../../components";
 import { useHistory } from "react-router-dom";
+import GetJobs from "../../containers/GetJobs";
 import { FaUserNurse, FaUserTie } from "react-icons/fa";
 
 const stepsArr = [
@@ -135,7 +136,9 @@ function Home () {
                     <SectionHeader.Title>Our Career <b>Opportunities</b></SectionHeader.Title>
                 </SectionHeader>
 
-                <DeckOfCards />
+                <GetJobs>
+                    <DeckOfCards />
+                </GetJobs>
             </OpportunitiesSection>
 
             { /**  BUSINESS SOLUTIONS */ }

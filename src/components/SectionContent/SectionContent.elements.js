@@ -5,7 +5,7 @@ export const Container = styled(FullWidthSection)`
     padding: 3rem 0;
 
     @media screen and (min-width: 991px) {
-        padding: 6rem 0;
+        padding: ${props => props.noPaddingBottom ? '2rem' : '6rem'} 0;
     }
 `;
 

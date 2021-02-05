@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 import { Grid, FullWidthSection } from "../Layout";
@@ -57,8 +57,8 @@ const Accordion = () => {
                         <Container>
                         {Data.map((item, index) => {
                             return (
-                            <>
-                                <Wrap onClick={() => toggle(index)} key={index}>
+                            <Fragment key={index}>
+                                <Wrap onClick={() => toggle(index)}>
                                     <h4><span>Step {index + 1}:</span>{item.question}</h4>
                                     <span>{clicked === index ? <FiMinus /> : <FiPlus />}</span>
                                 </Wrap>
@@ -67,7 +67,7 @@ const Accordion = () => {
                                         <h4>{item.answer}</h4>
                                     </Dropdown>
                                 ) : null}
-                            </>
+                            </Fragment>
                             );
                         })}
                         </Container>

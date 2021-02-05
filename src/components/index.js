@@ -16,8 +16,10 @@ export { default as Newsletter } from "./Newsletter/Newsletter";
 export { default as Inquiry } from "./Inquiry/Inquiry";
 export { default as Accordion } from "./Accordion/Accordion";
 export { default as Footer } from "./Footer/Footer";
-
 export { default as PageTitle } from "./PageTitle/PageTitle";
+export { default as Jobs } from "./Jobs/Jobs";
+export { default as FeaturedNews } from "./FeaturedNews/FeaturedNews";
+export { default as OtherNews } from "./OtherNews/OtherNews";
 
 export { default as ApplicantForm } from "./Formik/ApplicantForm";
 export { default as CompanyForm } from "./Formik/CompanyForm";

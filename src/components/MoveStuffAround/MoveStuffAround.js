@@ -16,7 +16,7 @@ const TickImage = styled.div`
 
 const MoveStuffAround = function () {
     return (
-        <Ticker mode="smooth">
+        <Ticker>
             {({ index }) => (
                 <Tick>
                     <TickImage><img src="images/german-flag.png" alt="German Flag" /></TickImage>

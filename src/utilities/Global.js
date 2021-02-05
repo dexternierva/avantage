@@ -194,18 +194,18 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     ::-webkit-input-placeholder { /* Edge */
-        color: ${defaultTheme.fourthNeutral};
+        color: #B2B2B2;
         font-family: 'Libre Baskerville', serif;
         font-style: italic;
     }
       
     :-ms-input-placeholder { /* Internet Explorer 10-11 */
-        color: ${defaultTheme.fourthNeutral};
+        color: #B2B2B2;
         font-family: 'Libre Baskerville', serif;
     }
       
     ::placeholder {
-        color: ${defaultTheme.fourthNeutral};
+        color: #B2B2B2;
         font-family: 'Libre Baskerville', serif;
     }
 

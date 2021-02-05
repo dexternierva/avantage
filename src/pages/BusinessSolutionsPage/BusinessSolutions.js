@@ -15,7 +15,7 @@ function BusinessSolutions () {
             </PageTitle>
 
             <Grid>
-                <SectionContent>
+                <SectionContent noPaddingBottom={true}>
                     <SectionContent.ContainerRow ss={2} es={6} sm={2} em={6} sd={2} ed={2}>
                         <SectionContent.PreTitle>Sourcing &amp; Recruitment.</SectionContent.PreTitle>
                     </SectionContent.ContainerRow>
