@@ -317,7 +317,7 @@ function ApplicantForm () {
                                         </label>
                                     </Fieldset>
 
-                                    <p>The company will collect personal information from you whenever you contact us for inquiries or requests through our website. Personal information, which will be collected includes Full name, email address, contact number, date of birth, address, CV, certificates etc. For employer inquiries, personal information, which will be collected additionally includes: company name, company address etc.</p>
+                                    <p>I hereby give my consent to A-Vantage International Recruitment Corp. to use my profile or personal data for my application for employment abroad. The company will collect personal information from you whenever you contact us for inquiries or requests through our website. Personal information, which will be collected includes Full name, email address, contact number, date of birth, address, CV, certificates etc.</p>
 
                                     <PrimaryButton type="submit" disabled={!formik.values.acceptTerms}>Submit Application</PrimaryButton>
                                 </Form>
