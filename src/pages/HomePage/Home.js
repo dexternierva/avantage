@@ -9,7 +9,8 @@ import {
     BusinessSolutions,
     Testimonials,
     Inquiry,
-    MoveStuffAround
+    MoveStuffAround,
+    OtherJobs
 } from "../../components";
 import { useHistory } from "react-router-dom";
 import GetJobs from "../../containers/GetJobs";
@@ -138,6 +139,10 @@ function Home () {
 
                 <GetJobs>
                     <DeckOfCards />
+                </GetJobs>
+
+                <GetJobs>
+                    <OtherJobs />
                 </GetJobs>
             </OpportunitiesSection>
 

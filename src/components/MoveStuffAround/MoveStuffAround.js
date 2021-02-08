@@ -16,13 +16,13 @@ const TickImage = styled.div`
 
 const MoveStuffAround = function () {
     return (
-        <Ticker>
+        <Ticker direction="toRight">
             {({ index }) => (
                 <Tick>
                     <TickImage><img src="images/german-flag.png" alt="German Flag" /></TickImage>
-                    <p>A-Vantage is Accredited by Germany</p>
+                    <p>A-Vantage is Accredited for Germany</p>
                     <TickImage><img src="images/teco-flag.png" alt="TECO Flag" /></TickImage>
-                    <p>A-Vantage is Accredited by Taiwan (TECO)</p>
+                    <p>A-Vantage is Accredited for Taiwan (TECO)</p>
                 </Tick>
             )}
         </Ticker>

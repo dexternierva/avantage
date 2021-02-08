@@ -20,6 +20,7 @@ export { default as PageTitle } from "./PageTitle/PageTitle";
 export { default as Jobs } from "./Jobs/Jobs";
 export { default as FeaturedNews } from "./FeaturedNews/FeaturedNews";
 export { default as OtherNews } from "./OtherNews/OtherNews";
+export { default as OtherJobs } from "./OtherJobs/OtherJobs";
 
 export { default as ApplicantForm } from "./Formik/ApplicantForm";
 export { default as CompanyForm } from "./Formik/CompanyForm";

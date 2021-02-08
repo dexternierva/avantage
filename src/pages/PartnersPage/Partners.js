@@ -56,11 +56,9 @@ function About () {
                                     </Card.Image>
                                     <Card.MainContent  fullCard={true}>
                                         {/* { cardContents[0].preTitle && <Card.PreTitle>{cardContents[0].preTitle}</Card.PreTitle> } */}
-                                        <Card.Title fullCard={true}>DEKRA Akademie GmbH</Card.Title>
+                                        <Card.Title fullCard={true}>DEKRA Akademie Kft.</Card.Title>
                                         <Card.Text>DEKRA Akademie is one of the largest private education companies in Germany...</Card.Text>
-                                        <Card.Cta fullCard={true}>
-                                            <PrimaryButton>Visit their Website</PrimaryButton>
-                                        </Card.Cta>
+                                        <Card.Cta fullCard={true}></Card.Cta>
                                     </Card.MainContent>
                                 </Card.Content>
                             </Card>

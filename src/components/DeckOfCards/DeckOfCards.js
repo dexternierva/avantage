@@ -22,8 +22,8 @@ function FeaturedCard ({ featured, applicantClick, viewAllClick }) {
                         <Card.Title fullCard={true}>{featured.title}</Card.Title>
                         <Card.Text><p>{featured.desc}</p></Card.Text>
                         <Card.Cta fullCard={true}>
-                            <PrimaryButton onClick={ applicantClick }>Learn More</PrimaryButton>
-                            <TertiaryButton onClick={ viewAllClick  }>View All Career Opportunities</TertiaryButton>
+                            <PrimaryButton onClick={ applicantClick }>Apply Now</PrimaryButton>
+                            <TertiaryButton onClick={ viewAllClick  }>Learn More</TertiaryButton>
                         </Card.Cta>
                     </Card.MainContent>
                 </Card.Content>
