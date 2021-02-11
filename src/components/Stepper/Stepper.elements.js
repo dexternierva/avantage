@@ -7,6 +7,7 @@ export const Container = styled(FullWidthSection)`
     background-image: linear-gradient( to right, rgba(4, 124, 199, 0.8), rgba(4, 124, 199, 0.2) ), url(${props => props.img});
     background-size: cover;
 `;
+
 export const ContainerRow = styled(Row)``;
 
 export const Steppers = styled.ul`
@@ -182,7 +183,7 @@ export const StepperMainContent = styled.div`
         // min-height: 380px;
 
         flex: 0 0 36%;
-        margin-top: 4rem;
+        margin-top: 1rem;
         display: flex;
         flex-direction: column;
         padding-top: 1rem;
@@ -209,6 +210,7 @@ export const StepperContentCta = styled.div`
 
 export const StepperContentPreTitle = styled.span`
     display: flex;
+    margin-top: 2rem;
     margin-bottom: 1rem;
     font-size: 0.75em;
     color: ${defaultTheme.lightestColor};
@@ -224,11 +226,12 @@ export const StepperContentPreTitle = styled.span`
     }
 `;
 
-export const StepperContentTitle = styled.h2`
+export const StepperContentTitle = styled.h3`
     margin: 0 0 1rem 0;
     font-weight: 600;
     color: ${defaultTheme.lightestColor};
 `;
+
 export const StepperContentText = styled.p``;
 
 export const StepperImage = styled.div`
@@ -259,6 +262,26 @@ export const StepperDivider = styled.span`
         left: 68%;
     }
 `;
+
+export const StepperSectionHeader = styled(Row)`
+    padding: 4rem 0 1rem 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+`;
+
+export const StepperSectionHeaderPreTitle = styled.p`
+    margin: 0 0 .5rem 0;
+    font-size: 0.75em;
+    color: ${defaultTheme.lightestColor};
+    text-transform: uppercase;
+`;
+
+export const StepperSectionHeaderTitle = styled.h2`
+    margin-top: 0;
+    color: #FFFFFF;
+`;
+
 
 export const Line = styled.div`
     width: 3px;

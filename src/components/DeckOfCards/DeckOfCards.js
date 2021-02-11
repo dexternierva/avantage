@@ -14,7 +14,7 @@ function FeaturedCard ({ featured, applicantClick, viewAllClick }) {
                 <Card.Content>
                     { featured.featuredImage && 
                     <Card.Image>
-                        <img src={`http://68.183.226.128${featured.featuredImage.url}`}  alt={featured.title} />
+                        <img src={`https://avantage.dev${featured.featuredImage.url}`}  alt={featured.title} />
                     </Card.Image>
                     }
                     <Card.MainContent  fullCard={true}>

@@ -151,7 +151,7 @@ function ApplicantForm () {
 
         const upload_res = await axios({
             method: 'POST',
-            url: 'http://68.183.226.128/applicants',
+            url: 'https://avantage.dev/applicants',
             data
         })
             .then(() => {

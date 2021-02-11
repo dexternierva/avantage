@@ -11,15 +11,16 @@ export const Container = styled.div`
 export const Content = styled(Row)``;
 
 export const Pretitle = styled.p`
-    margin-top: 0;
+    margin: 0 0 .25rem 0;
     color: ${defaultTheme.lightestColor};
     font-size: 0.75em;
-    font-weight: 500;
+    font-weight: 700;
     text-align: center;
     text-transform: uppercase;
 `;
 
 export const Title = styled.h3`
+    margin-top: 0;
     color: ${defaultTheme.lightestColor};
     font-weight: 400;
     text-align: center;

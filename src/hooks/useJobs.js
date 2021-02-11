@@ -17,8 +17,8 @@ function reducer (state, action) {
 }
 
 function useJobs () {
-    const apiUrl = 'http://68.183.226.128/jobs/';
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjEyNzQ4NjQ5LCJleHAiOjE2MTUzNDA2NDl9.s6aYW-a3pn89xnJWzoO2hwRU3Yhus18TeMU8pXLHBo8';
+    const apiUrl = 'https://avantage.dev/jobs/';
+    // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjEyNzQ4NjQ5LCJleHAiOjE2MTUzNDA2NDl9.s6aYW-a3pn89xnJWzoO2hwRU3Yhus18TeMU8pXLHBo8';
 
     const [state, dispatch] = useReducer(reducer, {
         loading: false,
@@ -29,11 +29,12 @@ function useJobs () {
     useEffect(() => {
         let isMounted = true;
         dispatch({ type: 'LOADING' });
-        fetch(apiUrl, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
+        // fetch(apiUrl, {
+        //     headers: {
+        //         Authorization: `Bearer ${token}`,
+        //     },
+        // })
+        fetch(apiUrl)
             .then(res => res.json())
             .then((repos) => {
                 if (isMounted) {

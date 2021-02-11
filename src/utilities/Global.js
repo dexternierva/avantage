@@ -217,4 +217,9 @@ export const GlobalStyle = createGlobalStyle`
     .carousel .slide iframe {
         margin: 0 0 40px !important;
     }
+
+    /* Add border on the flags ticker on the homepage */
+    .ticker {
+        border-bottom: 1px solid rgba(216,227,254,0.5);
+    }
 `;

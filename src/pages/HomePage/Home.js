@@ -9,10 +9,13 @@ import {
     Testimonials,
     Inquiry,
     MoveStuffAround,
-    OtherJobs
+    OtherJobs,
+    TopNews,
+    Solutions
 } from "../../components";
 import { useHistory } from "react-router-dom";
 import GetJobs from "../../containers/GetJobs";
+import GetNews from "../../containers/GetNews";
 import { FaUserNurse, FaUserTie } from "react-icons/fa";
 
 const OpportunitiesSection = styled.section`
@@ -75,12 +78,12 @@ function Home () {
                 </Bleeding.Container>
             </Bleeding>
 
-            <SectionHeader>
-                <SectionHeader.PreTitle>What We Offer <b>For Business Clients</b></SectionHeader.PreTitle>
-                <SectionHeader.Title>Our Business <b>Solutions</b></SectionHeader.Title>
-            </SectionHeader>
-            <BusinessSolutions />
+            <Solutions />
             
+            <GetNews>
+                <TopNews />
+            </GetNews>
+
             <Inquiry />
             
             { /**  TESTIMONIALS */ }

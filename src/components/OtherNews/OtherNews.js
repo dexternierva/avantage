@@ -17,7 +17,7 @@ function News ({ id, category, title, excerpt, url, featuredImage }) {
                         { category && <Card.PreTitle>{category}</Card.PreTitle> }
                         { featuredImage && 
                         <Card.Image>
-                            <img src={`http://68.183.226.128${featuredImage.url}`} alt={title} />
+                            <img src={`http://avantage.dev${featuredImage.url}`} alt={title} />
                         </Card.Image>
                         }
                         <Card.Title fullCard={true}>{title}</Card.Title>

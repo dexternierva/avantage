@@ -10,7 +10,7 @@ function News ({ title, excerpt, url, featuredImage }) {
             <Card.Content>
                 { featuredImage && 
                 <Card.Image>
-                    <img src={`http://68.183.226.128${featuredImage.url}`} alt={title} />
+                    <img src={`https://avantage.dev${featuredImage.url}`} alt={title} />
                 </Card.Image>
                 }
                 <Card.MainContent  fullCard={true}>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Grid from "../Layout/Grid";
 import { MdDone } from "react-icons/md";
-import PrimaryButton, { TertiaryButton } from "../Buttons";
-import { SwitchTransition, CSSTransition, TransitionGroup } from "react-transition-group";
+import PrimaryButton from "../Buttons";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 import {
     Container,
     ContainerRow,
@@ -19,6 +19,9 @@ import {
     StepperContentTitle,
     StepperContentText,
     StepperContentCta,
+    StepperSectionHeader,
+    StepperSectionHeaderPreTitle,
+    StepperSectionHeaderTitle,
     Line,
     HorizontalProgressLine,
     VerticalProgressLine
@@ -145,6 +148,11 @@ function Stepper ({ stepsArr, currentStep }) {
     return (
         <Grid>
             <Container img={stepsArr[currentStep - 1].img}>
+                <StepperSectionHeader ss={1} es={6} sd={1} ed={14}>
+                    <StepperSectionHeaderPreTitle>What We Offer For <b>Business Clients</b></StepperSectionHeaderPreTitle>
+                    <StepperSectionHeaderTitle>Our Business <b>Solutions</b></StepperSectionHeaderTitle>
+                </StepperSectionHeader>
+                
                 <ContainerRow ss={2} es={6} sd={2} ed={12}>
                     <ContentArea 
                         stepNum={currentStep}

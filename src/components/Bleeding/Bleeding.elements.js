@@ -5,10 +5,10 @@ import Row from "../Layout/Row";
 export const Container = styled(FullWidthSection)``;
 
 export const Primary = styled(Row)`
-    background-color: #047CC7;
+    background-color: rgba(4, 124, 199, 0.7);
 
     &:hover {
-        background-color: #3696D2;
+        background-color: rgba(4, 124, 199, 1.0);
     }
 `;
 
@@ -29,10 +29,10 @@ export const PrimaryContent = styled.div`
 `;
 
 export const Secondary = styled(Row)`
-    background-color: #E9EFFF;
+    background-color: rgba(233, 239, 255, 0.8);
 
     &:hover {
-        background-color: #FFFFFF;
+        background-color: rgba(217, 223, 239, 1.0);
     }
 `;
 
