@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { NewsContext } from "../../containers/GetNews";
-import PrimaryButton, { LinkButton } from "../Buttons";
+import PrimaryButton, { LinkButton, TertiaryButton } from "../Buttons";
 import { Card } from "..";
 import Grid from "../Layout/Grid";
 import FullWidthSection from "../Layout/FullWidthSection";
@@ -82,7 +82,7 @@ function TopNews () {
                 </Grid>
 
                 <TopNewsCta>
-                    <PrimaryButton onClick={ handleClick }>View All Articles</PrimaryButton>
+                    <TertiaryButton onClick={ handleClick }>View All Articles</TertiaryButton>
                 </TopNewsCta>
             </TopNewsContainer>
         ) 
