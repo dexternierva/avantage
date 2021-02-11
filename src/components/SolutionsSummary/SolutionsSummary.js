@@ -36,7 +36,7 @@ function SolutionsSummary () {
                         <SubContent>
                             <FaUserCheck size={60}/>
                             <Content>
-                                <SubTitle>Managed Recruitment</SubTitle>
+                                <SubTitle>Managed Recruitment Services</SubTitle>
                                 <SubText>We select the best among the best for you.</SubText>
                             </Content>
                         </SubContent>

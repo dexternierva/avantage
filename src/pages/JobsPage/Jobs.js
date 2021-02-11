@@ -43,7 +43,7 @@ function Opportunities () {
                 <Grid>
                     <FullWidthSection>
                         <Row ss={2} es={6} sm={2} em={6} sd={2} ed={2}>
-                            <PreTitle>Work with us.</PreTitle>
+                            <PreTitle>Work with us</PreTitle>
                         </Row>
                         
                         <GetJobs>

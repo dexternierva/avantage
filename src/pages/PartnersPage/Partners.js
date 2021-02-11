@@ -46,7 +46,7 @@ function About () {
                 <Grid>
                     <FullWidthSection>
                         <Row ss={2} es={6} sm={2} em={6} sd={2} ed={2}>
-                            <PreTitle>Trusted Professionals &amp; Partners.</PreTitle>
+                            <PreTitle>Trusted Professionals &amp; Partners</PreTitle>
                         </Row>
                         <Row ss={2} es={6} sm={2} em={6} sd={6} ed={8}>
                             <Card>
@@ -57,7 +57,7 @@ function About () {
                                     <Card.MainContent  fullCard={true}>
                                         {/* { cardContents[0].preTitle && <Card.PreTitle>{cardContents[0].preTitle}</Card.PreTitle> } */}
                                         <Card.Title fullCard={true}>DEKRA Akademie Kft.</Card.Title>
-                                        <Card.Text>DEKRA Akademie is one of the largest private education companies in Germany...</Card.Text>
+                                        <Card.Text></Card.Text>
                                         <Card.Cta fullCard={true}></Card.Cta>
                                     </Card.MainContent>
                                 </Card.Content>

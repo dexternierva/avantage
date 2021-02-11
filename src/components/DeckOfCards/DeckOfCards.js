@@ -27,7 +27,9 @@ function FeaturedCard ({ featured, applicantClick, viewAllClick }) {
                         </Card.Cta>
                     </Card.MainContent>
                 </Card.Content>
-                { featured.info && <Card.Info>{featured.info}</Card.Info> }
+                <Card.Info>
+                    <p>No fees to be collected. Beware of illegal recruiters and human traffickers.</p>
+                </Card.Info>
             </Card>
         </Row>
     )

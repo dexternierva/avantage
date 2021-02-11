@@ -5,7 +5,6 @@ import {
     SectionHeader, 
     Bleeding,
     DeckOfCards,
-    BusinessSolutions,
     Testimonials,
     Inquiry,
     MoveStuffAround,

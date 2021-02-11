@@ -36,13 +36,13 @@ function Solutions () {
                     <Text>Our clients from different industries worldwide benefit from our capacity to provide them with the service and HR solutions they need for their individual business case.</Text>
                     <PrimaryButton onClick={ handleClick }>Get in touch with us!</PrimaryButton>
                 </SolutionsMainContent>
-                <SolutionsSubContent ss={2} es={6} sm={2} em={6} sd={11} ed={4}>
+                <SolutionsSubContent ss={1} es={8} sm={1} em={8} sd={11} ed={4}>
                     <SolutionsSubContentSourcing onClick={ handleClick }>
                         <SubTitle>Sourcing &amp; Recruitment</SubTitle>
                         <SubText>We are sourcing the right candidate for you!.</SubText>
                     </SolutionsSubContentSourcing>
                     <SolutionsSubContentManaged onClick={ handleClick }>
-                        <SubTitle>Managed Recruitment</SubTitle>
+                        <SubTitle>Managed Recruitment Services</SubTitle>
                         <SubText>We select the best among the best for you!</SubText>
                     </SolutionsSubContentManaged>
                 </SolutionsSubContent>

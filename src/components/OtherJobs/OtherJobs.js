@@ -32,6 +32,9 @@ function OtherJob ({ id, job, applicantClick={applicantClick}, viewAllClick={vie
                             </Card.Cta>
                         </Card.MainContent>
                     </Card.Content>
+                    <Card.Info>
+                        <p>No fees to be collected. Beware of illegal recruiters and human traffickers.</p>
+                    </Card.Info>
                 </Card>
             </CardWrap>
         </Row>

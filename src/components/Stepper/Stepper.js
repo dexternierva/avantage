@@ -150,7 +150,7 @@ function Stepper ({ stepsArr, currentStep }) {
             <Container img={stepsArr[currentStep - 1].img}>
                 <StepperSectionHeader ss={1} es={6} sd={1} ed={14}>
                     <StepperSectionHeaderPreTitle>What We Offer For <b>Business Clients</b></StepperSectionHeaderPreTitle>
-                    <StepperSectionHeaderTitle>Our Business <b>Solutions</b></StepperSectionHeaderTitle>
+                    <StepperSectionHeaderTitle>Our Service <b>Process</b></StepperSectionHeaderTitle>
                 </StepperSectionHeader>
                 
                 <ContainerRow ss={2} es={6} sd={2} ed={12}>

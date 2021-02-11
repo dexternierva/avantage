@@ -40,7 +40,7 @@ function Footer () {
                     </ContainerRow>
                     <ContainerRow ss={2} es={6} sm={2} em={6} sd={2} ed={12}>
                         <Copyright>
-                            <CopyrightItem>	&#169; 2019 A-Vantage. All rights reserved.</CopyrightItem>
+                            <CopyrightItem>	&#169; 2019 A-Vantage International Recruitment Corp. All rights reserved.</CopyrightItem>
                             <CopyrightItem><NavLink to="/policy">Terms &amp; Conditions</NavLink> | <NavLink to="/policy">Privacy Policy</NavLink></CopyrightItem>
                         </Copyright>
                     </ContainerRow>

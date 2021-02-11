@@ -24,7 +24,7 @@ function News () {
     return (
         <Fragment>
             <PageTitle imageSource={"./images/news-hero.jpg"}>
-                <PageTitle.Header>Latest News &amp; Updates</PageTitle.Header>
+                <PageTitle.Header>Latest News &amp; Announcements</PageTitle.Header>
             </PageTitle>
             <ContentArea>
                 <Grid>
