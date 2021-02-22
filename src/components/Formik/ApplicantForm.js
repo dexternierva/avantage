@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, useFormikContext, useField } from "formik";
 import * as Yup from "yup";
 import FormikControl from './FormikControl';
 import PrimaryButton from "../Buttons";
@@ -26,6 +26,37 @@ const Fieldset = styled.div`
         }
     }
 `;
+
+let now = new Date();
+let randomNum = '';
+randomNum += Math.round(Math.random()*9);
+randomNum += Math.round(Math.random()*9);
+randomNum += now.getTime();
+
+const PatField = (props) => {
+    const {
+      values: { trainingLocation },
+      touched,
+      setFieldValue,
+    } = useFormikContext();
+
+    const [field, meta] = useField(props);
+  
+    React.useEffect(() => {
+      if ( trainingLocation.trim() !== '' && touched.trainingLocation ) {
+        const val = trainingLocation.trim();
+        const res = val.replace(/\s+/g, '').toUpperCase() + randomNum;
+        setFieldValue(props.name, `${res}`);
+      }
+    }, [trainingLocation, touched.trainingLocation, setFieldValue, props.name]);
+  
+    return (
+      <>
+        <input {...props} {...field} />
+        {!!meta.touched && !!meta.error && <div>{meta.error}</div>}
+      </>
+    );
+};
 
 function ApplicantForm () {
     const [cv, setCv] = useState(null);
@@ -87,6 +118,7 @@ function ApplicantForm () {
         trainingLocation: '',
         licenseNumber: '',
         inquiryPurpose: '',
+        pat: '',
         acceptTerms: false
     };
 
@@ -102,6 +134,7 @@ function ApplicantForm () {
         workingAbroad: Yup.string().required('Required'),
         jobApplyingFor: Yup.string().required('Required'),
         address: Yup.string().required('Required'),
+        pat: Yup.string(),
         registrationPurpose: Yup.string().when('jobApplyingFor', {
             is: (jobApplyingFor) => 'Nurse For Germany',
             then: Yup.string().required('Required'),
@@ -145,7 +178,8 @@ function ApplicantForm () {
             'trainingLocation': values.trainingLocation,
             'licenseNumber': values.licenseNumber,
             'inquiryPurpose': values.inquiryPurpose,
-            'acceptTerms': values.acceptTerms
+            'acceptTerms': values.acceptTerms,
+            'pat': values.pat
         }
         data.append('data', JSON.stringify(info));
 
@@ -318,6 +352,8 @@ function ApplicantForm () {
                                     </Fieldset>
 
                                     <p>I hereby give my consent to A-Vantage International Recruitment Corp. to use my profile or personal data for my application for employment abroad. The company will collect personal information from you whenever you contact us for inquiries or requests through our website. Personal information, which will be collected includes Full name, email address, contact number, date of birth, address, CV, certificates etc.</p>
+
+                                    <PatField name="pat" type="hidden" />
 
                                     <PrimaryButton type="submit" disabled={!formik.values.acceptTerms}>Submit Application</PrimaryButton>
                                 </Form>

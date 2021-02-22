@@ -29,7 +29,7 @@ export const PreTitle = styled.p`
 
 export const Title = styled.h3`
     margin-top: 0;
-    font-style: italic;
+    // font-style: italic;
     font-weight: 600;
 `;
 

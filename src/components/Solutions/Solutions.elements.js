@@ -11,6 +11,7 @@ export const SolutionsGrid = styled(Grid)`
     background-size: cover;
     background-position: top right;
 `;
+
 export const SolutionsFullWidthSection = styled(FullWidthSection)``;
 
 /* SECTION HEADER */

@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const TestimonialsSection = styled.div`
+    padding-bottom: 4rem;
+    padding-top: 0;
+    border-top: 1px solid #D8E3FE;
+    background: linear-gradient(180deg, #EAF0FF 0%, #F6F9FF 100%);
+`;
+
 export const TestimonialsCarousel = styled.div`
     width: 100%;
     margin: auto !important;

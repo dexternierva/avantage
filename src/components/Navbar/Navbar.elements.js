@@ -44,7 +44,7 @@ export const Logo = styled(Row)`
 `;
 
 export const LogoImage = styled.img.attrs({
-    src: "images/logo.svg"
+    src: "/images/logo.svg"
 })`
     display: flex;
     align-items: center;

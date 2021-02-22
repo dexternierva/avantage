@@ -1,19 +1,20 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 import {
     Hero,
     SectionHeader, 
     Bleeding,
-    DeckOfCards,
     Testimonials,
     Inquiry,
     MoveStuffAround,
-    OtherJobs,
     TopNews,
     Solutions
 } from "../../components";
+
+import FeaturedJob from "../../containers/FeaturedJob/FeaturedJob.container";
+import OtherJobs from "../../containers/OtherJobs/OtherJobs.container";
+
 import { useHistory } from "react-router-dom";
-import GetJobs from "../../containers/GetJobs";
 import GetNews from "../../containers/GetNews";
 import { FaUserNurse, FaUserTie } from "react-icons/fa";
 
@@ -25,11 +26,6 @@ const OpportunitiesSection = styled.section`
     @media screen and ( min-width: 991px ) {
         padding: 2rem 0 4rem 0;
     }
-`;
-
-const TestimonialsSection = styled.section`
-    padding: 2rem 0;
-    background: linear-gradient(180deg, #EAF0FF 0%, #F6F9FF 100%);
 `;
 
 function Home () {
@@ -49,13 +45,10 @@ function Home () {
                     <SectionHeader.Title>Our Career <b>Opportunities</b></SectionHeader.Title>
                 </SectionHeader>
 
-                <GetJobs>
-                    <DeckOfCards />
-                </GetJobs>
+                <FeaturedJob />
 
-                <GetJobs>
-                    <OtherJobs />
-                </GetJobs>
+                <OtherJobs />
+
             </OpportunitiesSection>
 
             <Bleeding gapSmall={"0 0"} gapMedium={"0 0"} gapDefault={"0 0"}>
@@ -83,12 +76,10 @@ function Home () {
                 <TopNews />
             </GetNews>
 
-            <Inquiry />
-            
             { /**  TESTIMONIALS */ }
-            {/* <TestimonialsSection>
-                <Testimonials />
-            </TestimonialsSection> */}
+            <Testimonials />
+
+            <Inquiry />
 
         </Fragment>
     )

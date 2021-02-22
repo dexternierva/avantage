@@ -23,7 +23,7 @@ function Footer () {
                 <Container>
                     <ContainerRow ss={2} es={6} sm={2} em={6} sd={2} ed={6}>
                         <ListItems>
-                            <ListItem><NavLink to="/"><img src="images/logo-icon.svg" alt="A-vantage" /></NavLink></ListItem>
+                            <ListItem><NavLink to="/"><img src="/images/logo-icon.svg" alt="A-vantage" /></NavLink></ListItem>
                             <ListItem><NavLink to="/about">About</NavLink></ListItem>
                             <ListItem><NavLink to="/partners">Partners</NavLink></ListItem>
                             <ListItem><NavLink to="/jobs">Jobs</NavLink></ListItem>

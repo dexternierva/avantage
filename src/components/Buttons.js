@@ -53,6 +53,10 @@ const Button = styled.button`
         outline: 2px solid ${defaultTheme.tertiaryColor};
         outline-offset: 2px;
     }
+
+    + a:link {
+        margin-left: .125rem;
+    }
 `;
 
 const PrimaryButton = styled(Button)`
@@ -118,12 +122,17 @@ export const TertiaryButton = styled(Button)`
 `;
 
 export const LinkButton = styled(Link)`
+    display: flex;
+    align-items: center;
     border: 0;
-    text-shadow: 1px 1px 1px rgba(94,209,117, 0.4);
     color: ${defaultTheme.primaryColor};
     padding: 0;
     margin: 1rem 0;
     text-decoration: none;
+    font-size: 0.875em;
+    font-weight: 600;
+    text-transform: uppercase;
+    // text-shadow: 1px 1px 1px rgba(94,209,117, 0.4);
 
     &:hover {
         text-decoration: underline;

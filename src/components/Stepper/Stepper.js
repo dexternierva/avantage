@@ -148,7 +148,7 @@ function Stepper ({ stepsArr, currentStep }) {
     return (
         <Grid>
             <Container img={stepsArr[currentStep - 1].img}>
-                <StepperSectionHeader ss={1} es={6} sd={1} ed={14}>
+                <StepperSectionHeader ss={1} es={8} sm={1} em={8} sd={1} ed={14}>
                     <StepperSectionHeaderPreTitle>What We Offer For <b>Business Clients</b></StepperSectionHeaderPreTitle>
                     <StepperSectionHeaderTitle>Our Service <b>Process</b></StepperSectionHeaderTitle>
                 </StepperSectionHeader>

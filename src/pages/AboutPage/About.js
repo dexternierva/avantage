@@ -16,7 +16,7 @@ function About () {
             <Grid>
                 <SectionContent>
                     <SectionContent.ContainerRow ss={2} es={6} sm={2} em={6} sd={2} ed={2}>
-                        <SectionContent.PreTitle>Our Story.</SectionContent.PreTitle>
+                        <SectionContent.PreTitle>Our Story</SectionContent.PreTitle>
                     </SectionContent.ContainerRow>
                     <SectionContent.ContainerRow ss={2} es={6} sm={2} em={6} sd={6} ed={8}>
                         <SectionContent.Title>"We strive for better quality in people’s lives."</SectionContent.Title>
