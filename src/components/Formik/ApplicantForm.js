@@ -136,22 +136,22 @@ function ApplicantForm () {
         address: Yup.string().required('Required'),
         pat: Yup.string(),
         registrationPurpose: Yup.string().when('jobApplyingFor', {
-            is: (jobApplyingFor) => 'Nurse For Germany',
+            is: 'Nurse For Germany',
             then: Yup.string().required('Required'),
             otherwise: Yup.string()
         }),
         trainingLocation: Yup.string().when('jobApplyingFor', {
-            is: (jobApplyingFor) => 'Nurse For Germany' || 'Caregiver For Canada',
+            is: 'Nurse For Germany' || 'Caregiver For Canada',
             then: Yup.string().required('Required'),
             otherwise: Yup.string()
         }),
         licenseNumber: Yup.string().when('jobApplyingFor', {
-            is: (jobApplyingFor) => 'Nurse For Germany',
+            is: 'Nurse For Germany',
             then: Yup.string().required('Required'),
             otherwise: Yup.string()
         }),
         inquiryPurpose: Yup.string().when('jobApplyingFor', {
-            is: (jobApplyingFor) => 'Other Professions',
+            is: 'Other Professions',
             then: Yup.string(),
             otherwise: Yup.string()
         }),
@@ -261,7 +261,6 @@ function ApplicantForm () {
                                         <FormikControl 
                                             control="input" 
                                             type="tel"
-                                            pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" 
                                             label="Phone Number" 
                                             name="phoneNumber"
                                             placeholder="0966-123-4567"
