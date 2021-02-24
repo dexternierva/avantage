@@ -7,8 +7,6 @@ import {
     MobileIcon,
     NavMenu,
     NavLink,
-    NavToolbar,
-    NavSocial,
     NavButton
 } from "./Navbar.elements";
 
@@ -16,7 +14,6 @@ import {
 import Grid from "../Layout/Grid";
 
 import { MdMenu, MdClose } from "react-icons/md";
-import { FaFacebookF, FaSkype, FaLinkedinIn } from "react-icons/fa";
 
 function Navbar () {
     const [click, setClick] = useState(false);

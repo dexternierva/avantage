@@ -23,11 +23,16 @@ export const ProgramsGrid = styled(Grid)`
         padding: 6rem 0;
     }
 `;
+
 export const Program = styled(Row)`
     text-align: left;
     margin-bottom: 3rem;
 `;
 
 export const ProgramContainer = styled(FullWidthSection)``;
-export const ProgramTitle = styled.h3``;
+
+export const ProgramTitle = styled.h3`
+    margin-top: 0;
+`;
+
 export const ProgramText = styled.p``;

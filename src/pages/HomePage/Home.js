@@ -77,7 +77,7 @@ function Home () {
             </GetNews>
 
             { /**  TESTIMONIALS */ }
-            <Testimonials />
+            {/* <Testimonials /> */}
 
             <Inquiry />
 

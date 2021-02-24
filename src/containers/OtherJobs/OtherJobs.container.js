@@ -8,7 +8,6 @@ const FeaturedJobContainer = () => {
         <>
             <Query query={JOBS_QUERY}>
                 {({ data: { jobs } }) => {
-                    console.log("jobs", jobs);
                     return <OtherJobs otherjobs={jobs} />;
                 }}
             </Query>

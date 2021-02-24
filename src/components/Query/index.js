@@ -9,6 +9,7 @@ const Loading = styled.div`
     position: fixed;
     top: 50%;
     left: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
     font-size: 50px;
     color: white;
     transform: translate(-50%,-50%);
