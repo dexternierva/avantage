@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import FormikControl from './FormikControl';
 import PrimaryButton from "../Buttons";
 import styled from "styled-components";
+import axios from "axios";
 
 const Fieldset = styled.div`
     @media screen and (min-width: 991px) {
@@ -36,38 +37,28 @@ function ContactForm () {
         message: Yup.string().required('Required')
     });
 
-    const onSubmit = function (values, actions) {
-        // console.log('Form data', JSON.stringify(values, null, 2));
-        const requestOptions = {
+    const onSubmit = async function (values, actions) {
+        
+        const upload_res = await axios({
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
+            url: 'https://avantage.dev/messages',
+            data: {
                 fullName: values.fullName,
                 contact: values.contact,
                 email: values.email,
                 message: values.message
-            })
-        };
-
-        fetch('http://68.183.226.128/messages', requestOptions)
-            .then(async response => {
-                const data = await response.json();
-
-                // check for error response
-                if (!response.ok) {
-                    // get error message from body or default to response status
-                    const error = (data && data.message) || response.status;
-                    return Promise.reject(error);
-                }
-            })
+            }
+        })
             .then(() => {
-                alert('Form has been successfully submitted. Thank you very much!');
+                alert("Form has been successfully submitted. Thank you very much!");
                 actions.resetForm();
             })
             .catch(error => {
                 alert('There was an error. Please try again later');
                 console.error('There was an error!', error);
             });
+        
+        console.log("FileUpload.handleSubmit upload_res", upload_res);
     }
 
     return (
@@ -90,10 +81,9 @@ function ContactForm () {
                             <FormikControl 
                                 control="input" 
                                 type="tel"
-                                pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" 
                                 label="Contact Number" 
                                 name="contact"
-                                placeholder="0966-123-4567"
+                                placeholder="09661234567"
                             />
                             <FormikControl 
                                 control="input" 

@@ -12,7 +12,6 @@ function FeaturedCard ({ job, applicantClick }) {
     process.env.NODE_ENV !== "development"
         ? job.featuredImage.url
         : process.env.REACT_APP_BACKEND_URL + job.featuredImage.url;
-    console.log(job);
     return (
         <Row ss={2} es={6} sm={2} em={6} sd={2} ed={12}>
             <Card>

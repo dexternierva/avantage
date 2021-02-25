@@ -27,6 +27,41 @@ const Fieldset = styled.div`
     }
 `;
 
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
+const AgeField = (props) => {
+    const {
+      values: { birthDate },
+      touched,
+      setFieldValue,
+    } = useFormikContext();
+
+    const [field, meta] = useField(props);
+  
+    React.useEffect(() => {
+        if ( birthDate !== null && touched.birthDate ) {
+            const val = getAge(birthDate);
+            setFieldValue(props.name, `${val}`);
+        }
+    }, [birthDate, touched.birthDate, setFieldValue, props.name]);
+  
+    return (
+      <>
+        <input {...props} {...field} />
+        {!!meta.touched && !!meta.error && <div>{meta.error}</div>}
+      </>
+    );
+};
+
 let now = new Date();
 let randomNum = '';
 randomNum += Math.round(Math.random()*9);
@@ -43,12 +78,145 @@ const PatField = (props) => {
     const [field, meta] = useField(props);
   
     React.useEffect(() => {
-      if ( trainingLocation.trim() !== '' && touched.trainingLocation ) {
-        const val = trainingLocation.trim();
-        const res = val.replace(/\s+/g, '').toUpperCase() + randomNum;
-        setFieldValue(props.name, `${res}`);
-      }
+        if ( trainingLocation.trim() !== '' && touched.trainingLocation ) {
+            const val = trainingLocation.trim();
+            const res = val.replace(/\s+/g, '').toUpperCase() + randomNum;
+            setFieldValue(props.name, `${res}`);
+        }
     }, [trainingLocation, touched.trainingLocation, setFieldValue, props.name]);
+  
+    return (
+      <>
+        <input {...props} {...field} />
+        {!!meta.touched && !!meta.error && <div>{meta.error}</div>}
+      </>
+    );
+};
+
+const LocationField = (props) => {
+    const {
+        values: { trainingLocation },
+        touched,
+        setFieldValue,
+    } = useFormikContext();
+
+    const [field, meta] = useField(props);
+
+    React.useEffect(() => {
+        if ( trainingLocation.trim() !== '' && touched.trainingLocation ) {
+            const val = trainingLocation.trim();
+            switch (val) {
+                case 'Baguio City':
+                    setFieldValue(props.name, 1);
+                    break;
+                case 'Cebu City':
+                    setFieldValue(props.name, 9);
+                    break;
+                case 'Iloilo City':
+                    setFieldValue(props.name, 2);
+                    break;
+                case 'Ortigas':
+                    setFieldValue(props.name, 4);
+                    break;
+                case 'Quezon City':
+                    setFieldValue(props.name, 5);
+                    break;
+                default:
+                    setFieldValue(props.name, 1);
+            }
+        }
+    }, [trainingLocation, touched.trainingLocation, setFieldValue, props.name]);
+  
+    return (
+      <>
+        <input {...props} {...field} />
+        {!!meta.touched && !!meta.error && <div>{meta.error}</div>}
+      </>
+    );
+};
+
+const SourceField = (props) => {
+    const {
+      values: { survey },
+      touched,
+      setFieldValue,
+    } = useFormikContext();
+
+    const [field, meta] = useField(props);
+  
+    React.useEffect(() => {
+        if ( survey.trim() !== '' && touched.survey ) {
+            const val = survey.trim();
+            switch (val) {
+                case 'facebook':
+                    setFieldValue(props.name, 1);
+                    break;
+                case 'friends':
+                    setFieldValue(props.name, 2);
+                    break;
+                case 'newspaper':
+                    setFieldValue(props.name, 3);
+                    break;
+                case 'radio':
+                    setFieldValue(props.name, 4);
+                    break;
+                case 'tv':
+                    setFieldValue(props.name, 5);
+                    break;
+                case 'walk-in':
+                    setFieldValue(props.name, 6);
+                    break;
+                case 'website':
+                    setFieldValue(props.name, 7);
+                    break;
+                case 'workabroad':
+                    setFieldValue(props.name, 8);
+                    break;
+                default:
+                    setFieldValue(props.name, 1);
+            }
+        }
+    }, [survey, touched.survey, setFieldValue, props.name]);
+  
+    return (
+      <>
+        <input {...props} {...field} />
+        {!!meta.touched && !!meta.error && <div>{meta.error}</div>}
+      </>
+    );
+};
+
+const PurposeField = (props) => {
+    const {
+      values: { registrationPurpose },
+      touched,
+      setFieldValue,
+    } = useFormikContext();
+
+    const [field, meta] = useField(props);
+  
+    React.useEffect(() => {
+        if ( registrationPurpose.trim() !== '' && touched.registrationPurpose ) {
+            const val = registrationPurpose.trim();
+
+            switch (val) {
+                case '':
+                    setFieldValue(props.name, 0);
+                    break;
+                case 'German Language Scholarship A1 to B2 and German Nursing Licensure Preparatory Course':
+                    setFieldValue(props.name, 1);
+                    break;
+                case 'German Nursing Licensure Preparatory Course for B1 and B2 passers':
+                    setFieldValue(props.name, 2);
+                    break;
+                case 'Scholarship for B2 Refresher Course':
+                    setFieldValue(props.name, 3);
+                    break;
+                default:
+                    setFieldValue(props.name, 1);
+            }
+        }
+    }, [registrationPurpose, touched.registrationPurpose, setFieldValue, props.name]);
   
     return (
       <>
@@ -108,6 +276,7 @@ function ApplicantForm () {
         firstName: '',
         middleName: '',
         birthDate: null,
+        age: null,
         messenger: '',
         phoneNumber: '',
         email: '',
@@ -119,7 +288,10 @@ function ApplicantForm () {
         licenseNumber: '',
         inquiryPurpose: '',
         pat: '',
-        acceptTerms: false
+        location: 0,
+        source: 0,
+        purpose: 0,
+        acceptTerms: false,
     };
 
     const validationSchema = Yup.object({
@@ -128,6 +300,7 @@ function ApplicantForm () {
         firstName: Yup.string().required('Required').min(2, 'Must be atleast 2 characters'),
         middleName: Yup.string(),
         birthDate: Yup.date().required('Required').nullable(),
+        age: Yup.number(),
         messenger: Yup.string().required('Required'),
         phoneNumber: Yup.string().required('Required'),
         email: Yup.string().email().required('Required'),
@@ -135,6 +308,9 @@ function ApplicantForm () {
         jobApplyingFor: Yup.string().required('Required'),
         address: Yup.string().required('Required'),
         pat: Yup.string(),
+        location: Yup.number(),
+        source: Yup.number(),
+        purpose: Yup.number(),
         registrationPurpose: Yup.string().when('jobApplyingFor', {
             is: 'Nurse For Germany',
             then: Yup.string().required('Required'),
@@ -152,7 +328,7 @@ function ApplicantForm () {
         }),
         inquiryPurpose: Yup.string().when('jobApplyingFor', {
             is: 'Other Professions',
-            then: Yup.string(),
+            then: Yup.string().required('Required'),
             otherwise: Yup.string()
         }),
         acceptTerms: Yup.bool().oneOf([true], ' You must accept terms and conditions!')
@@ -168,6 +344,7 @@ function ApplicantForm () {
             'firstName': values.firstName,
             'middleName': values.middleName,
             'birthDate': values.birthDate,
+            'age': values.age,
             'messenger': values.messenger,
             'phoneNumber': values.phoneNumber,
             'email': values.email,
@@ -179,7 +356,10 @@ function ApplicantForm () {
             'licenseNumber': values.licenseNumber,
             'inquiryPurpose': values.inquiryPurpose,
             'acceptTerms': values.acceptTerms,
-            'pat': values.pat
+            'pat': values.pat,
+            'location': values.location,
+            'source': values.source,
+            'purpose': values.purpose
         }
         data.append('data', JSON.stringify(info));
 
@@ -197,7 +377,7 @@ function ApplicantForm () {
                 console.error('There was an error!', error);
             });
 
-        console.log("FileUpload.handleSubmit upload_res", upload_res);
+        // console.log("FileUpload.handleSubmit upload_res", upload_res);
     }
 
     return (
@@ -263,7 +443,7 @@ function ApplicantForm () {
                                             type="tel"
                                             label="Phone Number" 
                                             name="phoneNumber"
-                                            placeholder="0966-123-4567"
+                                            placeholder="09661234567"
                                         />
                                         <FormikControl 
                                             control="input" 
@@ -339,7 +519,7 @@ function ApplicantForm () {
                                     />
                                     
                                     <label>Upload CV
-                                        <input onChange={handleChange} type="file" name="cv" id="cv" />
+                                        <input onChange={handleChange} type="file" name="cv" id="cv" required />
                                     </label>
 
                                     <Fieldset>
@@ -353,6 +533,10 @@ function ApplicantForm () {
                                     <p>I hereby give my consent to A-Vantage International Recruitment Corp. to use my profile or personal data for my application for employment abroad. The company will collect personal information from you whenever you contact us for inquiries or requests through our website. Personal information, which will be collected includes Full name, email address, contact number, date of birth, address, CV, certificates etc.</p>
 
                                     <PatField name="pat" type="hidden" />
+                                    <AgeField name="age" type="hidden" />
+                                    <LocationField name="location" type="hidden" />
+                                    <SourceField name="source" type="hidden" />
+                                    <PurposeField name="purpose" type="hidden" />
 
                                     <PrimaryButton type="submit" disabled={!formik.values.acceptTerms}>Submit Application</PrimaryButton>
                                 </Form>
