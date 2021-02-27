@@ -25,6 +25,8 @@ export { default as ApplicantForm } from "./Formik/ApplicantForm";
 export { default as CompanyForm } from "./Formik/CompanyForm";
 export { default as ContactForm } from "./Formik/ContactForm";
 
+export { default as Alert } from "./Alert/Alert";
+
 /* Layout Components */
 export { default as Grid } from "./Layout/Grid";
 export { default as MaxWidthSection } from "./Layout/MaxWidthSection";

@@ -7,6 +7,7 @@ import { Grid, FullWidthSection, Row } from "../Layout";
 import styled from "styled-components";
 import TextError from "./TextError";
 import axios from "axios";
+import Alert from "../Alert/Alert";
 
 const Container = styled(Grid)`
     padding: 1.5rem 0 3rem 0;
@@ -109,7 +110,7 @@ const LocationField = (props) => {
                 case 'Baguio City':
                     setFieldValue(props.name, 1);
                     break;
-                case 'Cebu City':
+                case 'Makati City':
                     setFieldValue(props.name, 9);
                     break;
                 case 'Iloilo City':
@@ -200,7 +201,7 @@ const PurposeField = (props) => {
             const val = registrationPurpose.trim();
 
             switch (val) {
-                case '':
+                case 'Not Applicable':
                     setFieldValue(props.name, 0);
                     break;
                 case 'German Language Scholarship A1 to B2 and German Nursing Licensure Preparatory Course':
@@ -227,6 +228,11 @@ const PurposeField = (props) => {
 };
 
 function ApplicantForm () {
+    const [formSuccess, setFormSuccess] = useState(false);
+    const [alert, setAlert] = useState(false);
+    const alertisactive = alert ? " alert-active" : "";
+    const alertSubject = "Application";
+    const digitsOnly = (value) => /^\d+$/.test(value);
     const [cv, setCv] = useState(null);
     const handleChange = (event) => { setCv(event.target.files[0]); }
 
@@ -259,7 +265,7 @@ function ApplicantForm () {
     const trainingLocationOptions = [
         { key: 'Select an option', value: '' },
         { key: 'Baguio City', value: 'Baguio City' },
-        { key: 'Cebu City', value: 'Cebu City' },
+        { key: 'Makati City', value: 'Makati City' },
         { key: 'Iloilo City', value: 'Iloilo City' },
         { key: 'Ortigas', value: 'Ortigas' },
         { key: 'Quezon City', value: 'Quezon City' }
@@ -275,8 +281,8 @@ function ApplicantForm () {
         lastName: '',
         firstName: '',
         middleName: '',
-        birthDate: null,
-        age: null,
+        birthDate: '',
+        age: 0,
         messenger: '',
         phoneNumber: '',
         email: '',
@@ -302,7 +308,7 @@ function ApplicantForm () {
         birthDate: Yup.date().required('Required').nullable(),
         age: Yup.number(),
         messenger: Yup.string().required('Required'),
-        phoneNumber: Yup.string().required('Required'),
+        phoneNumber: Yup.string().required('Required').test('Digits only', 'The field should have digits only', digitsOnly),
         email: Yup.string().email().required('Required'),
         workingAbroad: Yup.string().required('Required'),
         jobApplyingFor: Yup.string().required('Required'),
@@ -313,28 +319,25 @@ function ApplicantForm () {
         purpose: Yup.number(),
         registrationPurpose: Yup.string().when('jobApplyingFor', {
             is: 'Nurse For Germany',
-            then: Yup.string().required('Required'),
-            otherwise: Yup.string()
+            then: Yup.string().required('Required')
         }),
         trainingLocation: Yup.string().when('jobApplyingFor', {
             is: 'Nurse For Germany' || 'Caregiver For Canada',
-            then: Yup.string().required('Required'),
-            otherwise: Yup.string()
+            then: Yup.string().required('Required')
         }),
         licenseNumber: Yup.string().when('jobApplyingFor', {
             is: 'Nurse For Germany',
-            then: Yup.string().required('Required'),
-            otherwise: Yup.string()
+            then: Yup.string().required('Required')
         }),
         inquiryPurpose: Yup.string().when('jobApplyingFor', {
             is: 'Other Professions',
-            then: Yup.string().required('Required'),
-            otherwise: Yup.string()
+            then: Yup.string().required('Required')
         }),
         acceptTerms: Yup.bool().oneOf([true], ' You must accept terms and conditions!')
     });
     
     const onSubmit = async function (values, actions) {
+        console.log("values", values);
         const data = new FormData();
         data.append('files.cv', cv);
         
@@ -363,26 +366,26 @@ function ApplicantForm () {
         }
         data.append('data', JSON.stringify(info));
 
-        const upload_res = await axios({
+        await axios({
             method: 'POST',
             url: 'https://avantage.dev/applicants',
             data
         })
             .then(() => {
-                alert("Form has been successfully submitted. Thank you very much!");
+                setFormSuccess(true);
+                setAlert(true);
                 actions.resetForm();
             })
             .catch(error => {
-                alert('There was an error. Please try again later');
-                console.error('There was an error!', error);
+                setFormSuccess(false);
+                setAlert(true);
             });
-
-        // console.log("FileUpload.handleSubmit upload_res", upload_res);
     }
 
     return (
-        <Container>
+        <Container className={"container" + alertisactive}>
             <FullWidthSection>
+                { alert && <Alert setAlert={setAlert} alertSubject={alertSubject} formSuccess={formSuccess} /> }
                 <Row ss={2} se={6} sm={2} em={6} sd={2} ed={12}>
                     <Formik
                         initialValues={initialValues}

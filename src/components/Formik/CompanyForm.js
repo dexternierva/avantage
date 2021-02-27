@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from './FormikControl';
+import axios from "axios";
 import PrimaryButton from "../Buttons";
 import { Grid, FullWidthSection, Row } from "../Layout";
 import styled from "styled-components";
+import Alert from "../Alert/Alert";
 
 const Container = styled(Grid)`
     padding: 1.5rem 0 3rem 0;
@@ -26,6 +28,10 @@ const Fieldset = styled.div`
 `;
 
 function CompanyForm () {
+    const [formSuccess, setFormSuccess] = useState(false);
+    const [alert, setAlert] = useState(false);
+    const alertisactive = alert ? " alert-active" : "";
+    const alertSubject = "Inquiry";
     const digitsOnly = (value) => /^\d+$/.test(value);
 
     const [ agree, setAgree ] = useState(false);
@@ -311,13 +317,12 @@ function CompanyForm () {
         inquiry: Yup.string().required('Required'),
     });
 
-    const onSubmit = function (values, actions) {
-        console.log('Form data', JSON.stringify(values, null, 2));
+    const onSubmit = async function (values, actions) {
 
-        const requestOptions = {
+        const upload_res = await axios({
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
+            url: 'https://avantage.dev/employers',
+            data: {
                 title: values.title,
                 completeName: values.completeName,
                 email: values.email,
@@ -328,33 +333,25 @@ function CompanyForm () {
                 numberOfNeededWorkers: values.numberOfNeededWorkers,
                 country: values.country,
                 inquiry: values.inquiry
-            })
-        };
-
-        fetch('http://68.183.226.128/employers', requestOptions)
-            .then(async response => {
-                const data = await response.json();
-
-                // check for error response
-                if (!response.ok) {
-                    // get error message from body or default to response status
-                    const error = (data && data.message) || response.status;
-                    return Promise.reject(error);
-                }
-            })
+            }
+        })
             .then(() => {
-                alert("Form has been successfully submitted. Thank you very much!");
+                setFormSuccess(true);
+                setAlert(true);
                 actions.resetForm();
             })
             .catch(error => {
-                alert('There was an error. Please try again later');
-                console.error('There was an error!', error);
+                setFormSuccess(false);
+                setAlert(true);
             });
+        
+        console.log("FileUpload.handleSubmit upload_res", upload_res);
     }
 
     return (
-        <Container>
+        <Container className={"container" + alertisactive}>
             <FullWidthSection>
+                { alert && <Alert setAlert={setAlert} alertSubject={alertSubject} formSuccess={formSuccess} /> }
                 <Row ss={2} se={6} sm={2} em={6} sd={2} ed={12}>
                     <Formik
                         initialValues={initialValues}

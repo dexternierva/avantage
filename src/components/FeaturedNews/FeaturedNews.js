@@ -30,7 +30,7 @@ function FeaturedNews () {
     
     if (response !== null) {
         const featuredNews = response.map((newsItem) => {
-            if (newsItem.category == "featured") {
+            if (newsItem.category === "featured") {
                 return <News
                     key={newsItem.id}
                     featuredImage={ newsItem.featuredImage }

@@ -222,4 +222,18 @@ export const GlobalStyle = createGlobalStyle`
     .ticker {
         border-bottom: 1px solid rgba(216,227,254,0.5);
     }
+
+    .alert-active {
+        :before {
+            content: '';
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left:0;
+            right: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+            z-index: 9999;
+        }
+    }
 `;
