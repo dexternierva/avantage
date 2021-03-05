@@ -34,6 +34,13 @@ const ContentArea = styled.main`
     }
 `;
 
+const breadcrumbItems = [
+	{ to: '/', label: 'Home' },
+	{ to: '/about', label: 'About' },
+	{ to: '/applicant', label: 'Applicant' },
+	{ to: '/company', label: 'Company' }
+];
+
 function Job ({ job, applicantClick }) {
     const imageUrl =
     process.env.NODE_ENV !== "development"

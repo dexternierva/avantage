@@ -1,9 +1,11 @@
 import React from "react";
 import { useParams } from "react-router";
+import { useHistory } from "react-router-dom";
 import Query from "../../components/Query";
 import ReactMarkdown from "react-markdown";
 import ApplicantForm from "../../components/Formik/ApplicantForm";
 import { Grid, FullWidthSection, Row } from "../../components";
+import { MdArrowBack } from "react-icons/md";
 
 import {
 	PageTitle,
@@ -13,15 +15,15 @@ import {
 import {
 	ProgramWrap,
 	ConditionsList,
-	ConditionsListItem
+	ConditionsListItem,
+	BackNavigation
 } from "./Program.containers.elements";
-
-import { MdLabel } from "react-icons/md";
 
 import PROGRAM_QUERY from "../../queries/program/program";
 
 function Program () {
 	let { id } = useParams();
+	const history = useHistory();
     
 	return (
 		<Query query={PROGRAM_QUERY} id={id}>
@@ -41,7 +43,12 @@ function Program () {
 					<ProgramWrap>
 						<SectionContent>
 							<SectionContent.ContainerRow ss={2} es={6} sm={2} em={6} sd={2} ed={2}>
-								<SectionContent.PreTitle>Our Programs</SectionContent.PreTitle>
+								<SectionContent.PreTitle>
+									<BackNavigation>
+										<button onClick={() => { history.goBack(); }}><MdArrowBack size={24}/></button>
+									</BackNavigation>
+									Programs
+								</SectionContent.PreTitle>
 							</SectionContent.ContainerRow>
 							<SectionContent.ContainerRow ss={2} es={6} sm={2} em={6} sd={6} ed={8}>
 								<SectionContent.Title>{program.title}</SectionContent.Title>
@@ -58,8 +65,8 @@ function Program () {
 						<FullWidthSection>
 							<Row ss={2} es={6} sm={2} em={6} sd={2} ed={10}>
 								<ConditionsList>
-									<ConditionsListItem><MdLabel size={16} /> Dependent on the licensure test performance of the nurse and the processing time at the respective license issuing authority in Germany.</ConditionsListItem>
-									<ConditionsListItem><MdLabel size={16} /> Dependent on the individual qualification of the applicant with reference to the requirements of the license issuing authority in Germany.</ConditionsListItem>
+									<ConditionsListItem>* Dependent on the licensure test performance of the nurse and the processing time at the respective license issuing authority in Germany.</ConditionsListItem>
+									<ConditionsListItem>** Dependent on the individual qualification of the applicant with reference to the requirements of the license issuing authority in Germany.</ConditionsListItem>
 								</ConditionsList>
 							</Row>
 						</FullWidthSection>

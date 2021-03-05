@@ -42,11 +42,14 @@ export const GlobalStyle = createGlobalStyle`
     ul, ol {
         margin: 0;
         padding: 0;
+        list-style-position: inside;
     }
 
     ul li,
     ol li {
         list-style-position: inside;
+        margin-left: 1.4em;
+        text-indent: -1.4em;
     }
 
     dl {

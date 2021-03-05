@@ -15,7 +15,7 @@ import Contact from "./pages/ContactPage/Contact";
 import Policy from "./pages/PolicyPage/Policy";
 
 function App() {
-
+	
 	return (
 		<Router>
 			<ScrollToTop />

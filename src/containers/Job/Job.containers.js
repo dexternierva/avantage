@@ -1,13 +1,16 @@
 import React from "react";
 import { useParams } from "react-router";
+import { useHistory } from "react-router-dom";
 import Query from "../../components/Query";
 import ReactMarkdown from "react-markdown";
 import { TertiaryButton } from "../../components/Buttons";
 import { Link } from "react-router-dom";
 import ApplicantForm from "../../components/Formik/ApplicantForm";
+import { MdArrowBack } from "react-icons/md";
+
 import {
 	PageTitle,
-    SectionContent,
+    SectionContent
 } from "../../components";
 
 import {
@@ -18,7 +21,8 @@ import {
 	ProgramContainer,
 	Program,
 	ProgramTitle,
-	ProgramText
+	ProgramText,
+	BackNavigation
 } from "./Job.containers.elements";
 
 import JOB_QUERY from "../../queries/job/job";
@@ -26,6 +30,7 @@ import JOB_QUERY from "../../queries/job/job";
 const Job = () => {
 	let { id } = useParams();
 	let comp;
+	const history = useHistory();
 
 	return (
 		<Query query={JOB_QUERY} id={id}>
@@ -49,6 +54,11 @@ const Job = () => {
 									<ProgramText>{job.programs[1].excerpt}</ProgramText>
 									<Link to={`/programs/${job.programs[1].id}`}><TertiaryButton>Learn More</TertiaryButton></Link>
 								</Program>
+								<Program ss={2} es={6} sm={2} em={6} sd={6} ed={8}>
+									<ProgramTitle>{job.programs[2].title}</ProgramTitle>
+									<ProgramText>{job.programs[2].excerpt}</ProgramText>
+									<Link to={`/programs/${job.programs[2].id}`}><TertiaryButton>Learn More</TertiaryButton></Link>
+								</Program>
 							</ProgramContainer>
 						</ProgramsGrid>
 					</>
@@ -66,12 +76,18 @@ const Job = () => {
 					<PageTitle imageSource={imageUrl}>
 						<PageTitle.Header>Our Jobs</PageTitle.Header>
 					</PageTitle>
-
+					
 					<JobWrap>
 						<SectionContent>
 							<SectionContent.ContainerRow ss={2} es={6} sm={2} em={6} sd={2} ed={2}>
-								<SectionContent.PreTitle>Job Details</SectionContent.PreTitle>
+								<SectionContent.PreTitle>
+									<BackNavigation>
+										<button onClick={() => { history.goBack(); }}><MdArrowBack size={24}/></button>
+									</BackNavigation>
+									Jobs
+								</SectionContent.PreTitle>
 							</SectionContent.ContainerRow>
+
 							<SectionContent.ContainerRow ss={2} es={6} sm={2} em={6} sd={6} ed={8}>
 								<SectionContent.Title>{job.title}</SectionContent.Title>
 								<SectionContent.Text>

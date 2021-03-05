@@ -12,6 +12,8 @@ export const Container = styled(FullWidthSection)`
 export const ContainerRow = styled(Row)``;
 
 export const PreTitle = styled.p`
+    display: flex;
+    align-items: center;
     margin-top: 0;
     padding-top: 1rem;
     position: relative;
@@ -19,7 +21,8 @@ export const PreTitle = styled.p`
 
     &::before {
         content: '';
-        width: 8rem;
+        //width: 8rem;
+        width: 100%;
         border-top: 1px solid #5B5B5D;
         position: absolute;
         top: 0;

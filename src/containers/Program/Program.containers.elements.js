@@ -19,3 +19,28 @@ export const ConditionsListItem = styled.li`
     font-size: 0.75em;
     font-family: 'Libre Baskerville', serif;
 `;
+
+export const BackNavigation = styled.div`
+    display: flex;
+    text-align: center;
+    background: #F5F8FF;
+
+    button {
+        color: #047CC7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 2rem;
+        padding: .25rem .5rem;
+        background: transparent;
+        cursor: pointer;
+        border: 1px solid #EBEBEB;
+        border-radius: 2px;
+    }
+
+    button:hover {
+        background: #047CC7;
+        color: #FFFFFF;
+        border-radius: 2px;
+    }
+`;

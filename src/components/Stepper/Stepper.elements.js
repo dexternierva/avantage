@@ -58,6 +58,8 @@ export const StepperItem = styled.li`
     display: flex;
     align-items: flex-start;
     padding: 0 0 3rem 0;
+    margin-left: 0;
+    text-indent: 0;
 
     &.done {
         ${VerticalProgressLine} {
